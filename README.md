@@ -47,8 +47,8 @@ xr-line-assistant/
 - `develop` - Integration branch
 - `feature/p1-data` - Backend work
 - `feature/p2-classifier` - ML model work
-- `feature/p3-ui` - Unity core (YOUR BRANCH)
-- `feature/p4-ui` - Unity visuals (YOUR BRANCH)
+- `feature/p3-ui` - Unity core
+- `feature/p4-ui` - Unity visuals 
 
 ## Sprint Workflow
 
