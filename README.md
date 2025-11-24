@@ -63,8 +63,8 @@ xr-line-assistant/
 
 - [x] Unity basic UI - DONE
 - [x] Mock data integration - DONE
-- [x] Backend OPC UA - IN PROGRESS (P1)
-- [x] Classifier training - IN PROGRESS (P2)
+- [x] Backend OPC UA - DONE
+- [x] Classifier training - DONE
 - [x] AR animations - IN PROGRESS (P3/P4)
 
 ## Contact
