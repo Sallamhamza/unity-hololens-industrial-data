@@ -1,0 +1,21 @@
+Library/
+Temp/
+Obj/
+Build/
+Builds/
+Logs/
+UserSettings/
+
+# Unity project subfolder
+unity/XRLineAssistant/Library/
+unity/XRLineAssistant/Temp/
+unity/XRLineAssistant/Builds/
+unity/XRLineAssistant/Logs/
+unity/XRLineAssistant/UserSettings/
+
+# Visual Studio
+.vs/
+*.csproj
+*.sln
+*.suo
+*.user
