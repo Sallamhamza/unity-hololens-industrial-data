@@ -1,6 +1,5 @@
 \# Gateway Service (P1 - Backend/Data)
-plc_sif_gateway
-===============
+
 
 
 \*\*Owner:\*\* \[Eric]
@@ -9,7 +8,6 @@ plc_sif_gateway
 
 \## Responsibilities
 
-Extracts data from SIF402 and SIF405 stations PLCs
 
 
 \- OPC UA client for PLC communication
