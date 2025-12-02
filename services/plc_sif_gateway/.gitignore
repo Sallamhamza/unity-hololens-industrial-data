@@ -1,0 +1,7 @@
+*.backup
+
+#This avoids accidentally re-adding the internal Git repo.
+.sshkeys/
+.git/
+flows_cred.json
+node_modules/
