@@ -3,6 +3,7 @@
     "description": "Extracts data from SIF402 and SIF405 stations PLCs",
     "version": "0.0.1",
     "dependencies": {
+        "@flowfuse/node-red-dashboard": "~1.29.0",
         "node-red-contrib-opcua": "~0.2.345"
     },
     "node-red": {

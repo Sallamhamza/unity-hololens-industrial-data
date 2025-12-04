@@ -26,7 +26,7 @@
         "id": "728b4f57863eb686",
         "type": "tab",
         "label": "PLC_3_signals_Out_File_OK",
-        "disabled": true,
+        "disabled": false,
         "info": "PLC_3_signals_Out_File",
         "env": []
     },
@@ -34,9 +34,23 @@
         "id": "cdaeea4ad0360d20",
         "type": "tab",
         "label": "sim_3_signals_Out_UnityTest_OK",
-        "disabled": false,
+        "disabled": true,
         "info": "Flow_3signalsSim_ReadyForUnityTest 21Nov25",
         "env": []
+    },
+    {
+        "id": "f1daa3e7d6f0c6a3",
+        "type": "tab",
+        "label": "Feeder Caps API",
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "tab_feeders",
+        "type": "tab",
+        "label": "Feeder Hybrid OPC UA",
+        "disabled": true,
+        "info": ""
     },
     {
         "id": "bc6471816c7844a9",
@@ -62,6 +76,41 @@
         "usercertificate": "",
         "userprivatekey": "",
         "info": "with host ip:\r\nopc.tcp://192.168.65.254:53530/OPCUA/SimulationServer"
+    },
+    {
+        "id": "1e7b05e31dd949f3",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://130.130.130.5:4840",
+        "secpol": "None",
+        "secmode": "None",
+        "none": true,
+        "login": false,
+        "usercert": false,
+        "usercertificate": "",
+        "userprivatekey": ""
+    },
+    {
+        "id": "28b5687f4fd2b40c",
+        "type": "ui-base",
+        "name": "Dashboard",
+        "path": "/",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-control",
+            "ui-notification"
+        ]
+    },
+    {
+        "id": "opcua_endpoint",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://130.130.130.5:4840/UA/EmbeddedServer",
+        "secpol": "None",
+        "secmode": "None",
+        "none": true,
+        "login": false,
+        "usercert": false,
+        "usercertificate": "",
+        "userprivatekey": ""
     },
     {
         "id": "37d3f8bb713d74f4",
@@ -2906,5 +2955,1604 @@
         "x": 1210,
         "y": 780,
         "wires": []
+    },
+    {
+        "id": "7218f5076422f2a1",
+        "type": "OpcUa-Item",
+        "z": "f1daa3e7d6f0c6a3",
+        "item": "ns=6;s=::AsGlobalPV:MESINV_SIF405_usiFeeder1Cap",
+        "datatype": "Byte",
+        "value": "",
+        "name": "Feeder1Cap",
+        "x": 260,
+        "y": 100,
+        "wires": [
+            [
+                "a1bc5d77b9d3fce7"
+            ]
+        ]
+    },
+    {
+        "id": "e28aef7f9afdbd23",
+        "type": "OpcUa-Item",
+        "z": "f1daa3e7d6f0c6a3",
+        "item": "ns=6;s=::AsGlobalPV:MESINV_SIF405_usiFeeder1Type",
+        "datatype": "Byte",
+        "value": "",
+        "name": "Feeder1Type",
+        "x": 260,
+        "y": 160,
+        "wires": [
+            [
+                "a1bc5d77b9d3fce7"
+            ]
+        ]
+    },
+    {
+        "id": "7a18e5c76e7e2d15",
+        "type": "OpcUa-Item",
+        "z": "f1daa3e7d6f0c6a3",
+        "item": "ns=6;s=::AsGlobalPV:MESINV_SIF405_usiFeeder2Cap",
+        "datatype": "Byte",
+        "value": "",
+        "name": "Feeder2Cap",
+        "x": 260,
+        "y": 220,
+        "wires": [
+            [
+                "a1bc5d77b9d3fce7"
+            ]
+        ]
+    },
+    {
+        "id": "fa6a220c6fad986b",
+        "type": "OpcUa-Item",
+        "z": "f1daa3e7d6f0c6a3",
+        "item": "ns=6;s=::AsGlobalPV:MESINV_SIF405_usiFeeder2Type",
+        "datatype": "Byte",
+        "value": "",
+        "name": "Feeder2Type",
+        "x": 260,
+        "y": 280,
+        "wires": [
+            [
+                "a1bc5d77b9d3fce7"
+            ]
+        ]
+    },
+    {
+        "id": "a1bc5d77b9d3fce7",
+        "type": "OpcUa-Client",
+        "z": "f1daa3e7d6f0c6a3",
+        "endpoint": "1e7b05e31dd949f3",
+        "action": "readmultiple",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": "",
+        "maxMessageSize": "",
+        "receiveBufferSize": "",
+        "sendBufferSize": "",
+        "setstatusandtime": false,
+        "keepsessionalive": false,
+        "name": "",
+        "applicationName": "",
+        "applicationUri": "",
+        "x": 560,
+        "y": 180,
+        "wires": [
+            [
+                "bc59a1a3f902709c",
+                "b8c8a64abd1e3446"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "bc59a1a3f902709c",
+        "type": "function",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Store PLC values",
+        "func": "const key = msg.topic;\nconst val = msg.payload.value;\nfunction store(name, value) {\n    flow.set(name, {value: value, simulated: false});\n}\nif (key.includes(\"Feeder1Cap\")) store(\"feeder1_cap\", val);\nif (key.includes(\"Feeder1Type\")) store(\"feeder1_type\", val);\nif (key.includes(\"Feeder2Cap\")) store(\"feeder2_cap\", val);\nif (key.includes(\"Feeder2Type\")) store(\"feeder2_type\", val);\nreturn null;",
+        "outputs": 1,
+        "x": 820,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "801c4de4d50f9d3e",
+        "type": "inject",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Feeder1 +1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 240,
+        "y": 360,
+        "wires": [
+            [
+                "430376a1344b07d8"
+            ]
+        ]
+    },
+    {
+        "id": "430376a1344b07d8",
+        "type": "function",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Sim Feeder1 +1",
+        "func": "let f = flow.get('feeder1_cap') || {value:0};\nf.value = Math.min(20, f.value + 1);\nflow.set('feeder1_cap', {value:f.value, simulated:true});\nreturn feeder1_cap;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 360,
+        "wires": [
+            [
+                "f0e8986bc95d8a2a"
+            ]
+        ]
+    },
+    {
+        "id": "307dd75b44d9ac13",
+        "type": "inject",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Feeder1 -1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 240,
+        "y": 410,
+        "wires": [
+            [
+                "d3446574b20d8bde"
+            ]
+        ]
+    },
+    {
+        "id": "d3446574b20d8bde",
+        "type": "function",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Sim Feeder1 -1",
+        "func": "let f = flow.get('feeder1_cap') || {value:0};\nf.value = Math.max(0, f.value - 1);\nflow.set('feeder1_cap', {value:f.value, simulated:true});",
+        "outputs": 1,
+        "x": 540,
+        "y": 410,
+        "wires": [
+            [
+                "f67e426cc8c8ee75"
+            ]
+        ]
+    },
+    {
+        "id": "ab722c522fb7b4c3",
+        "type": "inject",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Feeder2 +1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 240,
+        "y": 660,
+        "wires": [
+            [
+                "e2d9763873efbdd8"
+            ]
+        ]
+    },
+    {
+        "id": "e2d9763873efbdd8",
+        "type": "function",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Sim Feeder2 +1",
+        "func": "let f = flow.get('feeder2_cap') || {value:0};\nf.value = Math.min(20, f.value + 1);\nflow.set('feeder2_cap', {value:f.value, simulated:true});",
+        "outputs": 1,
+        "x": 540,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8bbbe1b63f6ac824",
+        "type": "inject",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Feeder2 -1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 240,
+        "y": 710,
+        "wires": [
+            [
+                "8d56c1470c6e3bd7"
+            ]
+        ]
+    },
+    {
+        "id": "8d56c1470c6e3bd7",
+        "type": "function",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Sim Feeder2 -1",
+        "func": "let f = flow.get('feeder2_cap') || {value:0};\nf.value = Math.max(0, f.value - 1);\nflow.set('feeder2_cap', {value:f.value, simulated:true});",
+        "outputs": 1,
+        "x": 540,
+        "y": 710,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2e069e7b9098fafb",
+        "type": "function",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Validate Feeder1 Type",
+        "func": "let v = Number(msg.payload);\nif (v < 0 || v > 2) return null;\nflow.set('feeder1_type', {value:v, simulated:true});",
+        "outputs": 1,
+        "x": 560,
+        "y": 520,
+        "wires": [
+            [
+                "610b7cc669664d35"
+            ]
+        ]
+    },
+    {
+        "id": "561b183743d2f787",
+        "type": "function",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Validate Feeder2 Type",
+        "func": "let v = Number(msg.payload);\nif (v < 0 || v > 2) return null;\nflow.set('feeder2_type', {value:v, simulated:true});",
+        "outputs": 1,
+        "x": 560,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ce382c9bfc4286c8",
+        "type": "http in",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "",
+        "url": "/feeder/1",
+        "method": "get",
+        "upload": false,
+        "x": 800,
+        "y": 720,
+        "wires": [
+            [
+                "1ddb1798a1426eb0"
+            ]
+        ]
+    },
+    {
+        "id": "1ddb1798a1426eb0",
+        "type": "function",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Build Feeder1 JSON",
+        "func": "const cap = flow.get('feeder1_cap');\nconst typ = flow.get('feeder1_type');\nif (!cap || !typ) {\n    msg.payload = {error:\"Values not available\"};\n    msg.statusCode = 503;\n    return msg;\n}\nmsg.payload = {\n    feeder:1,\n    caps:cap.value,\n    type:typ.value,\n    simulated:cap.simulated||typ.simulated\n};\nreturn msg;",
+        "outputs": 1,
+        "x": 1060,
+        "y": 720,
+        "wires": [
+            [
+                "375977e996226ce8"
+            ]
+        ]
+    },
+    {
+        "id": "375977e996226ce8",
+        "type": "http response",
+        "z": "f1daa3e7d6f0c6a3",
+        "x": 1290,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "48ea726ce136a52c",
+        "type": "http in",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "",
+        "url": "/feeder/2",
+        "method": "get",
+        "upload": false,
+        "x": 800,
+        "y": 780,
+        "wires": [
+            [
+                "e1905b6cb3656d04"
+            ]
+        ]
+    },
+    {
+        "id": "e1905b6cb3656d04",
+        "type": "function",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Build Feeder2 JSON",
+        "func": "const cap = flow.get('feeder2_cap');\nconst typ = flow.get('feeder2_type');\nif (!cap || !typ) {\n    msg.payload = {error:\"Values not available\"};\n    msg.statusCode = 503;\n    return msg;\n}\nmsg.payload = {\n    feeder:2,\n    caps:cap.value,\n    type:typ.value,\n    simulated:cap.simulated||typ.simulated\n};\nreturn msg;",
+        "outputs": 1,
+        "x": 1060,
+        "y": 780,
+        "wires": [
+            [
+                "efa6b30fd45a7d51"
+            ]
+        ]
+    },
+    {
+        "id": "efa6b30fd45a7d51",
+        "type": "http response",
+        "z": "f1daa3e7d6f0c6a3",
+        "x": 1290,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "f0e8986bc95d8a2a",
+        "type": "debug",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "f67e426cc8c8ee75",
+        "type": "debug",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "debug 10",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "610b7cc669664d35",
+        "type": "debug",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "inj_f1_type_0",
+        "type": "inject",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Set Feeder1 Type = 0",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 240,
+        "y": 480,
+        "wires": [
+            [
+                "2e069e7b9098fafb"
+            ]
+        ]
+    },
+    {
+        "id": "inj_f1_type_1",
+        "type": "inject",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Set Feeder1 Type = 1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 240,
+        "y": 520,
+        "wires": [
+            [
+                "2e069e7b9098fafb"
+            ]
+        ]
+    },
+    {
+        "id": "inj_f1_type_2",
+        "type": "inject",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Set Feeder1 Type = 2",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "2",
+        "payloadType": "num",
+        "x": 240,
+        "y": 560,
+        "wires": [
+            [
+                "2e069e7b9098fafb"
+            ]
+        ]
+    },
+    {
+        "id": "e0adcdfc26782731",
+        "type": "inject",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Set Feeder1 Type = 0",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 240,
+        "y": 800,
+        "wires": [
+            [
+                "561b183743d2f787"
+            ]
+        ]
+    },
+    {
+        "id": "2b4088aeff08fe31",
+        "type": "inject",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Set Feeder1 Type = 1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 240,
+        "y": 840,
+        "wires": [
+            [
+                "561b183743d2f787"
+            ]
+        ]
+    },
+    {
+        "id": "7383f42c396fa007",
+        "type": "inject",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Set Feeder1 Type = 2",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "2",
+        "payloadType": "num",
+        "x": 240,
+        "y": 880,
+        "wires": [
+            [
+                "561b183743d2f787"
+            ]
+        ]
+    },
+    {
+        "id": "b8c8a64abd1e3446",
+        "type": "debug",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "debug 12",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "sub_trigger",
+        "type": "inject",
+        "z": "tab_feeders",
+        "d": true,
+        "name": "Start subscription",
+        "props": [
+            {
+                "p": "action",
+                "v": "subscribe",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "x": 330,
+        "y": 40,
+        "wires": [
+            [
+                "opcua_client"
+            ]
+        ]
+    },
+    {
+        "id": "poll_trigger",
+        "type": "inject",
+        "z": "tab_feeders",
+        "d": true,
+        "name": "Fallback polling every 5 sec",
+        "props": [
+            {
+                "p": "action",
+                "v": "read",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "0",
+        "topic": "",
+        "x": 340,
+        "y": 100,
+        "wires": [
+            [
+                "opcua_client"
+            ]
+        ]
+    },
+    {
+        "id": "item_f1_cap",
+        "type": "OpcUa-Item",
+        "z": "tab_feeders",
+        "item": "ns=6;s=::AsGlobalPV:MESINV_SIF405_usiFeeder1Cap",
+        "datatype": "Byte",
+        "value": "",
+        "name": "Feeder1Cap",
+        "x": 300,
+        "y": 220,
+        "wires": [
+            [
+                "opcua_client"
+            ]
+        ]
+    },
+    {
+        "id": "item_f1_type",
+        "type": "OpcUa-Item",
+        "z": "tab_feeders",
+        "item": "ns=6;s=::AsGlobalPV:MESINV_SIF405_usiFeeder1Type",
+        "datatype": "Byte",
+        "value": "",
+        "name": "Feeder1Type",
+        "x": 300,
+        "y": 260,
+        "wires": [
+            [
+                "opcua_client"
+            ]
+        ]
+    },
+    {
+        "id": "item_f2_cap",
+        "type": "OpcUa-Item",
+        "z": "tab_feeders",
+        "item": "ns=6;s=::AsGlobalPV:MESINV_SIF405_usiFeeder2Cap",
+        "datatype": "Byte",
+        "value": "",
+        "name": "Feeder2Cap",
+        "x": 300,
+        "y": 300,
+        "wires": [
+            [
+                "opcua_client"
+            ]
+        ]
+    },
+    {
+        "id": "item_f2_type",
+        "type": "OpcUa-Item",
+        "z": "tab_feeders",
+        "item": "ns=6;s=::AsGlobalPV:MESINV_SIF405_usiFeeder2Type",
+        "datatype": "Byte",
+        "value": "",
+        "name": "Feeder2Type",
+        "x": 300,
+        "y": 340,
+        "wires": [
+            [
+                "opcua_client"
+            ]
+        ]
+    },
+    {
+        "id": "opcua_client",
+        "type": "OpcUa-Client",
+        "z": "tab_feeders",
+        "endpoint": "opcua_endpoint",
+        "action": "readmultiple",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 0,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": "",
+        "maxMessageSize": "",
+        "receiveBufferSize": "",
+        "sendBufferSize": "",
+        "setstatusandtime": true,
+        "keepsessionalive": false,
+        "name": "Hybrid OPC UA Client",
+        "applicationName": "",
+        "applicationUri": "",
+        "x": 620,
+        "y": 260,
+        "wires": [
+            [
+                "store_plc_values",
+                "dbg_plc_raw"
+            ],
+            [],
+            [
+                "dbg_plc_errors"
+            ]
+        ]
+    },
+    {
+        "id": "store_plc_values",
+        "type": "function",
+        "z": "tab_feeders",
+        "name": "Store PLC values (real)",
+        "func": "// Normalize key from browseName\nlet keyObj = msg.topic || {};\nlet key = \"\";\n\nif (typeof keyObj === \"object\") {\n    key = keyObj.browseName || keyObj.nodeId || JSON.stringify(keyObj);\n} else {\n    key = String(keyObj);\n}\n\nconst val = msg.payload;\n\n// Ignore weird/unexpected messages\nif (val === undefined || val === null) return null;\n\n// Helper: store real PLC values unless simulation is active\nfunction storeReal(name, value) {\n    const simFlag = flow.get(name + \"_sim\");\n    if (simFlag && simFlag.active) return;     // simulation active → ignore PLC\n    flow.set(name, { value: value, simulated: false });\n}\n\n// Route based on browseName\nif (key === \"Feeder1Cap\") storeReal(\"feeder1_cap\", val);\nif (key === \"Feeder1Type\") storeReal(\"feeder1_type\", val);\nif (key === \"Feeder2Cap\") storeReal(\"feeder2_cap\", val);\nif (key === \"Feeder2Type\") storeReal(\"feeder2_type\", val);\n\nreturn null;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dbg_plc_raw",
+        "type": "debug",
+        "z": "tab_feeders",
+        "name": "PLC RAW",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "dbg_plc_errors",
+        "type": "debug",
+        "z": "tab_feeders",
+        "name": "PLC ERRORS",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 930,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "sim_f1_cap_inc",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "F1 +1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 150,
+        "y": 540,
+        "wires": [
+            [
+                "sim_f1_cap_fn"
+            ]
+        ]
+    },
+    {
+        "id": "sim_f1_cap_fn",
+        "type": "function",
+        "z": "tab_feeders",
+        "name": "Sim Feeder1 Cap +1",
+        "func": "let f = flow.get(\"feeder1_cap\") || { value: 0 };\nf.value = Math.min(20, f.value + 1);\nflow.set(\"feeder1_cap\", { value: f.value, simulated: true });\nflow.set(\"feeder1_cap_sim\", { active: true });\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "sim_f1_type_0",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "F1 Type 0",
+        "props": [
+            {
+                "p": "payload",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "x": 170,
+        "y": 640,
+        "wires": [
+            [
+                "sim_f1_type_fn"
+            ]
+        ]
+    },
+    {
+        "id": "sim_f1_type_fn",
+        "type": "function",
+        "z": "tab_feeders",
+        "name": "Sim Feeder1 Type",
+        "func": "let v = Number(msg.payload);\nif (v < 0 || v > 2) return null;\n\nflow.set(\"feeder1_type\", { value: v, simulated: true });\nflow.set(\"feeder1_type_sim\", { active: true });\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "api_f1",
+        "type": "http in",
+        "z": "tab_feeders",
+        "name": "",
+        "url": "/feeder/1",
+        "method": "get",
+        "upload": false,
+        "x": 740,
+        "y": 600,
+        "wires": [
+            [
+                "api_f1_fn"
+            ]
+        ]
+    },
+    {
+        "id": "api_f1_fn",
+        "type": "function",
+        "z": "tab_feeders",
+        "name": "Build Feeder 1 JSON",
+        "func": "const cap = flow.get('feeder1_cap');\nconst typ = flow.get('feeder1_type');\nmsg.payload = {\n  feeder: 1,\n  caps: cap ? cap.value : null,\n  type: typ ? typ.value : null,\n  simulated: (flow.get('feeder1_cap_sim')?.active || flow.get('feeder1_type_sim')?.active) || false\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1010,
+        "y": 600,
+        "wires": [
+            [
+                "api_f1_resp"
+            ]
+        ]
+    },
+    {
+        "id": "api_f1_resp",
+        "type": "http response",
+        "z": "tab_feeders",
+        "statusCode": "",
+        "headers": {},
+        "x": 1240,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "init_feeder_values",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "Initialize Feeder Values (startup)",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.5,
+        "topic": "",
+        "payloadType": "date",
+        "x": 710,
+        "y": 120,
+        "wires": [
+            [
+                "set_initial_values_fn"
+            ]
+        ]
+    },
+    {
+        "id": "set_initial_values_fn",
+        "type": "function",
+        "z": "tab_feeders",
+        "name": "Set default simulation values",
+        "func": "flow.set('feeder1_cap',   {value:0, simulated:true});\nflow.set('feeder1_type',  {value:0, simulated:true});\nflow.set('feeder2_cap',   {value:0, simulated:true});\nflow.set('feeder2_type',  {value:0, simulated:true});\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 980,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e4eae056f964a7c7",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "F1 -1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 140,
+        "y": 580,
+        "wires": [
+            [
+                "0637bac89e80f646"
+            ]
+        ]
+    },
+    {
+        "id": "0637bac89e80f646",
+        "type": "function",
+        "z": "tab_feeders",
+        "name": "Sim Feeder1 Cap -1",
+        "func": "let f = flow.get(\"feeder1_cap\") || { value: 0 };\nf.value = Math.max(0, f.value - 1);\nflow.set(\"feeder1_cap\", { value: f.value, simulated: true });\nflow.set(\"feeder1_cap_sim\", { active: true });\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e5dab1a21ecdd2f3",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "F1 Type 1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 170,
+        "y": 680,
+        "wires": [
+            [
+                "sim_f1_type_fn"
+            ]
+        ]
+    },
+    {
+        "id": "84cef97b2b5e3e5d",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "F1 Type 2",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "2",
+        "payloadType": "num",
+        "x": 170,
+        "y": 720,
+        "wires": [
+            [
+                "sim_f1_type_fn"
+            ]
+        ]
+    },
+    {
+        "id": "http_in_allfeeders",
+        "type": "http in",
+        "z": "tab_feeders",
+        "name": "GET all feeders",
+        "url": "/feeders",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 770,
+        "y": 680,
+        "wires": [
+            [
+                "build_allfeeders"
+            ]
+        ]
+    },
+    {
+        "id": "build_allfeeders",
+        "type": "function",
+        "z": "tab_feeders",
+        "name": "Build JSON for both feeders",
+        "func": "const f1c = flow.get('feeder1_cap');\nconst f1t = flow.get('feeder1_type');\nconst f2c = flow.get('feeder2_cap');\nconst f2t = flow.get('feeder2_type');\n\n// fallback defaults if missing\nfunction safe(val) {\n    return val ? val : {value:0, simulated:true};\n}\n\nconst feeder1 = {\n    feeder: 1,\n    caps: safe(f1c).value,\n    type: safe(f1t).value,\n    simulated: safe(f1c).simulated || safe(f1t).simulated\n};\n\nconst feeder2 = {\n    feeder: 2,\n    caps: safe(f2c).value,\n    type: safe(f2t).value,\n    simulated: safe(f2c).simulated || safe(f2t).simulated\n};\n\nmsg.payload = {\n    feeders: [ feeder1, feeder2 ]\n};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1030,
+        "y": 680,
+        "wires": [
+            [
+                "http_response_allfeeders"
+            ]
+        ]
+    },
+    {
+        "id": "http_response_allfeeders",
+        "type": "http response",
+        "z": "tab_feeders",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1260,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "ea66828c9355dbff",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "F2 +1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 160,
+        "y": 820,
+        "wires": [
+            [
+                "ff3f311498b348c2"
+            ]
+        ]
+    },
+    {
+        "id": "ff3f311498b348c2",
+        "type": "function",
+        "z": "tab_feeders",
+        "name": "Sim Feeder2 Cap +1",
+        "func": "let f = flow.get('feeder2_cap') || { value: 0 };\nf.value = Math.min(20, f.value + 1);\nflow.set('feeder2_cap', f);\nflow.set('feeder2_cap_sim', { active: true });\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f43b4217558896c0",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "F2 Type 0",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 180,
+        "y": 920,
+        "wires": [
+            [
+                "324afdf824ad01b0"
+            ]
+        ]
+    },
+    {
+        "id": "324afdf824ad01b0",
+        "type": "function",
+        "z": "tab_feeders",
+        "name": "Sim Feeder2 Type",
+        "func": "const v = Number(msg.payload);\nif (v < 0 || v > 2) return null;\nflow.set('feeder2_type', { value: v });\nflow.set('feeder2_type_sim', { active: true });\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "288c3cdb4bb31989",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "F2 -1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 150,
+        "y": 860,
+        "wires": [
+            [
+                "49dbacc6ac143bbc"
+            ]
+        ]
+    },
+    {
+        "id": "49dbacc6ac143bbc",
+        "type": "function",
+        "z": "tab_feeders",
+        "name": "Sim Feeder2 Cap -1",
+        "func": "let f = flow.get('feeder2_cap') || { value: 0 };\nf.value = Math.max(0, f.value - 1);\nflow.set('feeder2_cap', f);\nflow.set('feeder2_cap_sim', { active: true });\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "99ec6a8221cc0163",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "F2 Type 1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 180,
+        "y": 960,
+        "wires": [
+            [
+                "324afdf824ad01b0"
+            ]
+        ]
+    },
+    {
+        "id": "939192d542bb5ed7",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "F2 Type 2",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "2",
+        "payloadType": "num",
+        "x": 180,
+        "y": 1000,
+        "wires": [
+            [
+                "324afdf824ad01b0"
+            ]
+        ]
+    },
+    {
+        "id": "readmulti_inject",
+        "type": "inject",
+        "z": "tab_feeders",
+        "d": true,
+        "name": "Read 4 Feeder Signals",
+        "props": [
+            {
+                "p": "topic",
+                "v": "[\"ns=6;s=::AsGlobalPV:MESINV_SIF405_usiFeeder1Cap\", \"ns=6;s=::AsGlobalPV:MESINV_SIF405_usiFeeder1Type\", \"ns=6;s=::AsGlobalPV:MESINV_SIF405_usiFeeder2Cap\", \"ns=6;s=::AsGlobalPV:MESINV_SIF405_usiFeeder2Type\"]",
+                "vt": "json"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "x": 330,
+        "y": 160,
+        "wires": [
+            [
+                "opcua_client"
+            ]
+        ]
+    },
+    {
+        "id": "c9b5f075a091a348",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 220,
+        "wires": [
+            [
+                "item_f1_cap"
+            ]
+        ]
+    },
+    {
+        "id": "4a565fca1e79a5f8",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 260,
+        "wires": [
+            [
+                "item_f1_type"
+            ]
+        ]
+    },
+    {
+        "id": "175b25a0a85e8c5a",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 300,
+        "wires": [
+            [
+                "item_f2_cap"
+            ]
+        ]
+    },
+    {
+        "id": "dd65c9e32fc65e08",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 340,
+        "wires": [
+            [
+                "item_f2_type"
+            ]
+        ]
+    },
+    {
+        "id": "02f70fefc1ebdc56",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "Read multiple items",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "20",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "readmultiple",
+        "payload": "",
+        "payloadType": "str",
+        "x": 320,
+        "y": 400,
+        "wires": [
+            [
+                "opcua_client"
+            ]
+        ]
+    },
+    {
+        "id": "e217cc607f10a850",
+        "type": "function",
+        "z": "tab_feeders",
+        "name": "function 3",
+        "func": "return {\n    feeder1_cap: flow.get(\"feeder1_cap\"),\n    feeder1_cap_sim: flow.get(\"feeder1_cap_sim\"),\n    feeder1_type: flow.get(\"feeder1_type\"),\n    feeder1_type_sim: flow.get(\"feeder1_type_sim\"),\n    feeder2_cap: flow.get(\"feeder2_cap\"),\n    feeder2_cap_sim: flow.get(\"feeder2_cap_sim\"),\n    feeder2_type: flow.get(\"feeder2_type\"),\n    feeder2_type_sim: flow.get(\"feeder2_type_sim\")\n};\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 440,
+        "wires": [
+            [
+                "e7a852c9d5fe645b"
+            ]
+        ]
+    },
+    {
+        "id": "e7a852c9d5fe645b",
+        "type": "debug",
+        "z": "tab_feeders",
+        "name": "debug 13",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1060,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "8170066c80019be1",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 700,
+        "y": 440,
+        "wires": [
+            [
+                "e217cc607f10a850"
+            ]
+        ]
+    },
+    {
+        "id": "inj_disable_f1_sim",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "Disable simulation Feeder1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 690,
+        "y": 20,
+        "wires": [
+            [
+                "fn_disable_f1_sim"
+            ]
+        ]
+    },
+    {
+        "id": "fn_disable_f1_sim",
+        "type": "function",
+        "z": "tab_feeders",
+        "name": "Clear Feeder1 simulation flags",
+        "func": "flow.set(\"feeder1_cap_sim\",  { active: false });\nflow.set(\"feeder1_type_sim\", { active: false });\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 20,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b9aa1e625d1689aa",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "Disable simulation Feeder2",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 690,
+        "y": 60,
+        "wires": [
+            [
+                "470ca004398659b0"
+            ]
+        ]
+    },
+    {
+        "id": "470ca004398659b0",
+        "type": "function",
+        "z": "tab_feeders",
+        "name": "Clear Feeder2 simulation flags",
+        "func": "flow.set(\"feeder2_cap_sim\",  { active: false });\nflow.set(\"feeder2_type_sim\", { active: false });\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 60,
+        "wires": [
+            []
+        ]
     }
 ]
