@@ -1,12 +1,9 @@
 using System;
 
-// Data structure classes used by both MockDataLoader and ApiDataManager
-
 [Serializable]
 public class StationData
 {
     public Station station;
-    public HopperData[] hoppers;
     public AlarmData[] alarms;
 }
 
@@ -15,27 +12,18 @@ public class Station
 {
     public string id;
     public string status;
-    public string currentRecipe;
-    public int productionCount;
-    public float efficiency;
-}
+    public string recipe;
+    public string timestamp;
 
-[Serializable]
-public class HopperData
-{
-    public string id;
-    public string color;
-    public int level;
-    public string status;
-    public bool needsRefill;
+    public int runningTime;    // NEW
+    public float current;      // NEW
 }
 
 [Serializable]
 public class AlarmData
 {
     public string id;
-    public string type;
+    public string severity;
     public string message;
     public string timestamp;
-    public string severity;
 }
