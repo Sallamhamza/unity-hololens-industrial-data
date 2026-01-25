@@ -14,3 +14,7 @@ unity/XRLineAssistant/Logs/
 
 # Node-RED or local virtual environments
 XR_Project/.venv/
+*.mp4
+*.pyd
+*.tgz
+XR_Project/.venv/
