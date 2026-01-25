@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIF-402 AR Station Monitor | Hamza Sallam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* --- 1. RED & GRAY THEME --- */
+        :root {
+            --bg-body: #F4F4F4;        /* Light Grey */
+            --bg-card: #FFFFFF;        /* Pure white */
+            --text-main: #212121;      /* Almost Black */
+            --text-muted: #757575;     /* Medium Grey */
+            
+            /* RED & GRAY PALETTE */
+            --gradient-primary: linear-gradient(135deg, #D32F2F 0%, #B71C1C 100%); /* Bold Red */
+            --gradient-accent: linear-gradient(135deg, #424242 0%, #212121 100%);  /* Dark Gray */
+            
+            --color-primary: #D32F2F;  /* Red */
+            --color-dark: #212121;     /* Dark Gray */
+            --color-light-gray: #E0E0E0;
+            
+            --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 10px 30px rgba(211, 47, 47, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- 2. HEADER & NAV --- */
+        header {
+            background: var(--bg-card);
+            height: 80px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--color-dark);
+            letter-spacing: -0.5px;
+        }
+        
+        .logo span { color: var(--color-primary); }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            margin-left: 30px;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover { color: var(--color-primary); }
+
+        /* --- 3. HERO SECTION --- */
+        .hero {
+            margin-top: 80px;
+            padding: 100px 5%;
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        /* Decorative shapes */
+        .shape {
+            position: absolute;
+            background: var(--color-light-gray);
+            opacity: 0.3;
+            z-index: 0;
+            border-radius: 50%;
+        }
+        .shape-1 { top: -20%; right: -10%; width: 600px; height: 600px; background: #FFEBEE; } /* Light Red tint */
+        
+        .hero-content { position: relative; z-index: 1; }
+        
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--color-dark);
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 600px;
+            border-left: 4px solid var(--color-primary);
+            padding-left: 20px;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            position: relative; z-index: 1;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-card);
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            border-bottom: 4px solid var(--color-primary);
+        }
+        .stat-card:hover { transform: translateY(-5px); }
+
+        .stat-num {
+            font-size: 2.5rem;
+            font-weight: 800;
+            display: block;
+            color: var(--color-primary);
+        }
+        .stat-label { font-size: 0.9rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; }
+
+        /* --- 4. SECTIONS GENERAL --- */
+        section { padding: 100px 5%; position: relative; }
+        section:nth-child(even) { background: #fff; }
+        
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+            color: var(--color-dark);
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px; left: 0;
+            width: 60px; height: 5px;
+            background: var(--color-primary);
+        }
+
+        /* --- 5. ARCHITECTURE --- */
+        .arch-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        .arch-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-card);
+            border-top: 5px solid var(--text-muted);
+            position: relative;
+            transition: 0.3s;
+        }
+        .arch-card:hover { border-top-color: var(--color-primary); transform: translateY(-3px); }
+
+        .arch-card h3 { font-size: 1.2rem; margin-bottom: 15px; color: var(--color-dark); }
+        .arch-card ul { padding-left: 20px; font-size: 0.95rem; color: var(--text-muted); }
+        .arch-card li { margin-bottom: 8px; }
+
+        @media (max-width: 1024px) { .arch-grid { grid-template-columns: 1fr; } }
+
+        /* --- 6. CONTRIBUTIONS (Deep Dives) --- */
+        .contribution {
+            background: #fff;
+            border-radius: 12px;
+            padding: 50px;
+            margin-bottom: 60px;
+            box-shadow: var(--shadow-card);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            border-left: 5px solid var(--color-primary);
+        }
+        .contribution.full-width { grid-template-columns: 1fr; }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 4px;
+            background: #FFEBEE; /* Very Light Red */
+            color: var(--color-primary);
+            font-weight: 700;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .code-snippet {
+            background: #212121; /* Dark Grey code bg */
+            color: #E0E0E0;
+            padding: 25px;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            position: relative;
+        }
+        .code-header {
+            position: absolute; top: 0; left: 0; width: 100%;
+            background: #424242; padding: 5px 15px;
+            font-size: 0.75rem; color: #fff;
+            border-radius: 8px 8px 0 0;
+        }
+
+        /* --- 7. TROUBLESHOOTING --- */
+        .trouble-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .trouble-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 5px solid var(--text-muted);
+            box-shadow: var(--shadow-card);
+            transition: 0.3s;
+        }
+        .trouble-card:hover { transform: translateY(-5px); border-left-color: var(--color-primary); }
+        
+        .trouble-card h4 { font-size: 1.1rem; margin-bottom: 10px; color: var(--color-dark); }
+        .trouble-card .symptom { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px; font-style: italic; }
+        .trouble-card .solution { font-weight: 700; color: var(--color-primary); font-size: 0.95rem; }
+
+        /* --- 8. METRICS TABLE --- */
+        table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-card); }
+        th { background: var(--color-dark); color: #fff; padding: 20px; text-align: left; }
+        td { padding: 20px; border-bottom: 1px solid #eee; color: var(--text-main); }
+        tr:last-child td { border-bottom: none; }
+
+        /* --- 9. ROADMAP --- */
+        .roadmap-container { display: flex; gap: 20px; margin-top: 40px; }
+        .roadmap-col { flex: 1; background: #fff; padding: 30px; border-radius: 8px; box-shadow: var(--shadow-card); border-top: 4px solid var(--color-dark); }
+        .roadmap-col h3 { font-size: 1.2rem; margin-bottom: 20px; color: var(--color-primary); }
+        .roadmap-col ul { padding-left: 20px; color: var(--text-muted); }
+
+        /* --- 10. FOOTER --- */
+        footer {
+            background: var(--color-dark);
+            color: #fff;
+            padding: 80px 5%;
+            text-align: center;
+        }
+        .footer-links a { color: #fff; margin: 0 15px; text-decoration: none; opacity: 0.7; transition: 0.3s; }
+        .footer-links a:hover { opacity: 1; color: var(--color-primary); }
+
+        @media (max-width: 768px) {
+            .hero { grid-template-columns: 1fr; padding-top: 150px; }
+            .contribution { grid-template-columns: 1fr; }
+            .roadmap-container { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">HamzaSallam<span>.XR</span></div>
+        <nav>
+            <a href="#summary">Summary</a>
+            <a href="#architecture">Architecture</a>
+            <a href="#tech">Deep Dive</a>
+            <a href="#troubleshooting">Troubleshooting</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="shape shape-1"></div>
+        
+        <div class="hero-content">
+            <span class="badge">Industrial Analytics • Uppsala University</span>
+            <h1>SIF-402 AR<br>Station Monitor</h1>
+            <p class="subtitle">An end-to-end Mixed Reality interface bridging Industrial IoT (PLC) with immersive visualization on HoloLens 2.</p>
+            <p><strong>Role:</strong> Lead XR Developer & System Integrator<br><strong>Duration:</strong> Oct 2025 – Jan 2026</p>
+        </div>
+
+        <div class="stat-grid">
+            <div class="stat-card">
+                <span class="stat-num">570+</span>
+                <span class="stat-label">Lines of C# Code</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-num">60</span>
+                <span class="stat-label">Stable FPS</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-num">&lt;100ms</span>
+                <span class="stat-label">Latency</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-num">100%</span>
+                <span class="stat-label">Deploy Success</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="summary">
+        <h2 class="section-title">Executive Summary</h2>
+        <p style="max-width: 800px; font-size: 1.1rem; margin-bottom: 30px;">
+            The SIF-402 AR Station Monitor demonstrates the complete pipeline from <strong>OPC UA</strong> industrial protocols through <strong>REST APIs</strong> to immersive AR visualization on the <strong>Microsoft HoloLens 2</strong>. The application renders real-time PLC telemetry data (hopper levels, station status, alarms) onto a spatial UI in the operator's field of view, enabling hands-free machinery monitoring.
+        </p>
+        <div class="arch-grid">
+            <div class="arch-card" style="border-top-color: var(--color-primary)">
+                <h3>Key Achievements</h3>
+                <ul>
+                    <li>Implemented Node-RED middleware bridging OPC UA and HTTP REST.</li>
+                    <li>Achieved 60 FPS stable holographic rendering.</li>
+                    <li>Resolved 7+ critical blocking issues.</li>
+                    <li>Modular architecture for Mock/Live data swapping.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="architecture" style="background: #EFEFEF;">
+        <h2 class="section-title">System Architecture</h2>
+        <p style="margin-bottom: 40px;">A four-layer architecture bridging industrial automation and augmented reality.</p>
+        
+        <div class="arch-grid">
+            <div class="arch-card">
+                <h3>1. PLC (Siemens B&R)</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 10px;">The Source</p>
+                <ul>
+                    <li><strong>Signal:</strong> MESPAOEE_udiRunningTime</li>
+                    <li><strong>Signal:</strong> MESPAOEE_bAlarm (Bool)</li>
+                    <li><strong>Signal:</strong> MESPAEA_rCurrent (Float)</li>
+                </ul>
+            </div>
+
+            <div class="arch-card">
+                <h3>2. Node-RED</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 10px;">The Middleware (Port 1880)</p>
+                <ul>
+                    <li>OPC UA Client (opc.tcp://130.130.130.2)</li>
+                    <li>JS Data Transformation</li>
+                    <li>HTTP REST Endpoints</li>
+                </ul>
+            </div>
+
+            <div class="arch-card">
+                <h3>3. Unity Application</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 10px;">The Core Logic</p>
+                <ul>
+                    <li>ApiDataManager (3s Polling)</li>
+                    <li>JSON Deserialization</li>
+                    <li>Event-Driven UI Updates</li>
+                </ul>
+            </div>
+
+            <div class="arch-card">
+                <h3>4. HoloLens 2</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 10px;">The Visualization</p>
+                <ul>
+                    <li>MRTK Hand Tracking</li>
+                    <li>World Space Canvas (0.001 Scale)</li>
+                    <li>Spatial Rendering</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="tech">
+        <h2 class="section-title">Technical Deep Dive</h2>
+
+        <div class="contribution">
+            <div>
+                <span class="badge">Contribution 1</span>
+                <h3>Full-Stack IIoT Integration</h3>
+                <p>Architected a middleware layer using Node-RED to bridge OPC UA and HTTP REST APIs. Industrial PLCs communicate via OPC UA, which is incompatible with Unity's native capabilities.</p>
+                <ul style="margin-top: 20px; padding-left: 20px;">
+                    <li><strong>Transformation:</strong> PLC values → Unity-compatible JSON.</li>
+                    <li><strong>Endpoints:</strong> Created 3 REST endpoints (/mes/blue_latest).</li>
+                    <li><strong>Performance:</strong> <100ms API response time.</li>
+                </ul>
+            </div>
+            <div class="code-snippet">
+                <div class="code-header">C# - ApiDataManager.cs</div>
+                <pre>
+IEnumerator FetchHopperData(string endpoint) {
+    using (UnityWebRequest request = UnityWebRequest.Get(url)) {
+        request.timeout = 5;
+        yield return request.SendWebRequest();
+
+        if (request.result == Success) {
+            string json = request.downloadHandler.text;
+            HopperResponse res = JsonUtility.FromJson<HopperResponse>(json);
+            // Update UI via Callback
+            callback?.Invoke(true);
+        }
+    }
+}
+                </pre>
+            </div>
+        </div>
+
+        <div class="contribution">
+            <div>
+                <span class="badge">Contribution 2</span>
+                <h3>Modular Data-UI Architecture</h3>
+                <p>Created a flexible three-layer architecture to switch between Mock Data (Dev) and Live API (Prod) without changing UI code.</p>
+                <ul style="margin-top: 20px; padding-left: 20px;">
+                    <li><strong>Layer 1:</strong> Shared Data Structures (DataClasses.cs).</li>
+                    <li><strong>Layer 2:</strong> Swappable Providers (MockDataManager vs ApiDataManager).</li>
+                    <li><strong>Layer 3:</strong> Event-Driven Presentation (StationInfoDisplay).</li>
+                </ul>
+            </div>
+            <div class="code-snippet">
+                <div class="code-header">C# - StationInfoDisplay.cs</div>
+                <pre>
+void OnDataReceived(StationData data) {
+    if (data.station.status == "Running")
+        stationStatusText.color = Color.green;
+    
+    // Update hoppers dynamically
+    UpdateHopperDisplay(blueHopper, data.hoppers[0]);
+}
+
+void UpdateHopperDisplay(TMP_Text text, HopperData h) {
+    text.text = $"Level: {h.level}%";
+    if (h.status == "Low") text.color = Color.red;
+}
+                </pre>
+            </div>
+        </div>
+
+        <div class="contribution full-width">
+            <div>
+                <span class="badge">Contribution 3</span>
+                <h3>UWP Deployment Pipeline Mastery</h3>
+                <p>HoloLens 2 requires ARM64 UWP builds with strict configuration. I resolved multiple conflicts to achieve a stable build pipeline.</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px;">
+                    <div style="background:#F4F4F4; padding:20px; border-radius:8px;">
+                        <h4 style="color:var(--color-primary)">Critical Build Settings</h4>
+                        <ul style="font-size:0.9rem; margin-top:10px; padding-left:20px;">
+                            <li><strong>Type:</strong> D3D Project (NOT XAML)</li>
+                            <li><strong>Arch:</strong> ARM64</li>
+                            <li><strong>Backend:</strong> IL2CPP</li>
+                            <li><strong>Min Version:</strong> 10.0.10240.0</li>
+                        </ul>
+                    </div>
+                    <div style="background:#F4F4F4; padding:20px; border-radius:8px;">
+                        <h4 style="color:var(--color-primary)">OpenXR Config</h4>
+                        <ul style="font-size:0.9rem; margin-top:10px; padding-left:20px;">
+                            <li><strong>Disabled:</strong> Holographic Remoting (Device Build)</li>
+                            <li><strong>Enabled:</strong> Microsoft Hand Interaction Profile</li>
+                            <li><strong>Enabled:</strong> Eye Gaze Interaction Profile</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contribution">
+            <div>
+                <span class="badge">Contribution 4</span>
+                <h3>MRTK Interaction System</h3>
+                <p>Unity's standard UI doesn't work with spatial hands. I implemented a specific MRTK component stack for every interactive button.</p>
+                <ul style="margin-top: 20px; padding-left: 20px;">
+                    <li><strong>Interactable:</strong> State & Events.</li>
+                    <li><strong>PressableButton:</strong> Physical press animation.</li>
+                    <li><strong>NearInteractionTouchable:</strong> Poke detection.</li>
+                    <li><strong>Box Collider:</strong> Physics boundary.</li>
+                </ul>
+            </div>
+            <div class="code-snippet">
+                 <div class="code-header">C# - StartupManager.cs</div>
+                <pre>
+void Start() {
+    startButton.OnClick.AddListener(OnStartClicked);
+}
+
+void OnStartClicked() {
+    // Smooth spatial transition
+    startupMenu.SetActive(false);
+    mainControlPanel.SetActive(true);
+}
+                </pre>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="troubleshooting" style="background: #FAFAFA;">
+        <h2 class="section-title">Problem Solving Showcase</h2>
+        <p style="margin-bottom: 40px;">7 critical blocking issues resolved during development.</p>
+        
+        <div class="trouble-grid">
+            <div class="trouble-card">
+                <h4>1. The 2D Window Mystery</h4>
+                <div class="symptom">App appeared as a flat slate, not 3D holograms.</div>
+                <div class="solution">Solution: Switch Build Type to "D3D Project".</div>
+            </div>
+
+            <div class="trouble-card">
+                <h4>2. OpenXR Build Failure</h4>
+                <div class="symptom">Error: "Holographic Remoting and Init XR both enabled".</div>
+                <div class="solution">Solution: Disable Holographic Remoting in Project Settings.</div>
+            </div>
+
+            <div class="trouble-card">
+                <h4>3. HTTP Security Block</h4>
+                <div class="symptom">Unity blocked Node-RED connection.</div>
+                <div class="solution">Solution: Player Settings -> Allow Downloads over HTTP.</div>
+            </div>
+
+            <div class="trouble-card">
+                <h4>4. The Invisible UI</h4>
+                <div class="symptom">Data fetched but UI showed "NULL".</div>
+                <div class="solution">Solution: Added missing StationInfoDisplay component.</div>
+            </div>
+
+            <div class="trouble-card">
+                <h4>5. Dead Hand Inputs</h4>
+                <div class="symptom">Buttons worked in Editor, failed on Device.</div>
+                <div class="solution">Solution: Added Microsoft Hand Interaction Profile.</div>
+            </div>
+
+            <div class="trouble-card">
+                <h4>6. Network Timeout</h4>
+                <div class="symptom">Access Denied on Local Network.</div>
+                <div class="solution">Solution: Enable "PrivateNetworkClientServer" Capability.</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="metrics">
+        <h2 class="section-title">Quantitative Metrics</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Achievement</th>
+                    <th>Measurement Method</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Code Lines</td>
+                    <td>570+</td>
+                    <td>Across 7 C# Scripts</td>
+                </tr>
+                <tr>
+                    <td>Latency</td>
+                    <td>&lt;100ms</td>
+                    <td>Network Profiler + Timestamps</td>
+                </tr>
+                <tr>
+                    <td>Refresh Rate</td>
+                    <td>3 Seconds</td>
+                    <td>Configured Polling Interval</td>
+                </tr>
+                <tr>
+                    <td>Frame Rate</td>
+                    <td>60 FPS</td>
+                    <td>Unity Profiler on HoloLens 2</td>
+                </tr>
+                <tr>
+                    <td>Success Rate</td>
+                    <td>5/5 Builds</td>
+                    <td>Zero Runtime Crashes</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="roadmap" style="background: #EFEFEF;">
+        <h2 class="section-title">Future Roadmap</h2>
+        <div class="roadmap-container">
+            <div class="roadmap-col">
+                <h3>Immediate</h3>
+                <ul>
+                    <li>QR Code Spatial Anchoring</li>
+                    <li>Audio Alarm Feedback (Spatial Sound)</li>
+                    <li>Historical Data Graphs (Unity UI Toolkit)</li>
+                </ul>
+            </div>
+            <div class="roadmap-col">
+                <h3>Medium Term</h3>
+                <ul>
+                    <li>Voice Commands ("Show Alarms")</li>
+                    <li>Multi-User Sync (Azure Anchors)</li>
+                    <li>Offline SQLite Caching</li>
+                </ul>
+            </div>
+            <div class="roadmap-col">
+                <h3>Long Term</h3>
+                <ul>
+                    <li>Predictive Maintenance ML</li>
+                    <li>Digital Twin CAD Overlay</li>
+                    <li>Remote Expert Video Calls</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h2>Hamza Sallam</h2>
+        <p style="opacity: 0.8; margin-bottom: 30px;">M.Sc. Computer Science • Industrial Analytics • Uppsala University</p>
+        <div class="footer-links">
+            <a href="mailto:sallamhamza77@gmail.com">sallamhamza77@gmail.com</a>
+            <a href="https://www.linkedin.com/in/hamza-sallam">LinkedIn</a>
+            <a href="https://github.com/Sallamhamza/unity-hololens-industrial-data">GitHub Repository</a>
+        </div>
+        <p style="margin-top: 50px; font-size: 0.8rem; opacity: 0.5;">Based on SIF-402 Project Portfolio • 2026</p>
+    </footer>
+
+</body>
+</html>

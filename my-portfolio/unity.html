@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unity Development - SIF-402 HoloLens AR Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+            line-height: 1.7;
+            color: #ffffff;
+            background: #0a0e27;
+            background-image: 
+                linear-gradient(rgba(10, 14, 39, 0.85), rgba(10, 14, 39, 0.85)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(52,152,219,0.1)" stroke-width="1"/></pattern></defs><rect width="1200" height="800" fill="url(%23grid)"/></svg>');
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        .header {
+            background: linear-gradient(135deg, rgba(26, 35, 126, 0.95) 0%, rgba(40, 53, 147, 0.95) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgba(52, 152, 219, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #3498db, #5dade2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .header-meta {
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .nav-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 2000;
+            background: rgba(26, 35, 126, 0.9);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(52, 152, 219, 0.3);
+        }
+
+        .nav-toggle:hover {
+            background: rgba(40, 53, 147, 0.95);
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+        }
+
+        .side-nav {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 320px;
+            height: 100vh;
+            background: rgba(15, 20, 40, 0.95);
+            box-shadow: -2px 0 8px rgba(0,0,0,0.5);
+            z-index: 1999;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            padding: 80px 0 20px 0;
+            backdrop-filter: blur(10px);
+            border-left: 2px solid rgba(52, 152, 219, 0.3);
+        }
+
+        .side-nav.active {
+            right: 0;
+        }
+
+        .side-nav h3 {
+            padding: 0 1.5rem;
+            color: #3498db;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .side-nav ul {
+            list-style: none;
+        }
+
+        .side-nav a {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .side-nav a:hover {
+            background: rgba(52, 152, 219, 0.2);
+            color: #3498db;
+            border-left-color: #3498db;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0;
+            padding: 2rem 4rem;
+        }
+
+        section {
+            background: rgba(20, 25, 45, 0.85);
+            margin: 2rem 0;
+            padding: 3rem 4rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(52, 152, 219, 0.2);
+        }
+
+        h2 {
+            color: #3498db;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(52, 152, 219, 0.5);
+        }
+
+        h3 {
+            color: #5dade2;
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        h4 {
+            color: #85c1e9;
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #ecf0f1;
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+            color: #bdc3c7;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, rgba(26, 35, 126, 0.8) 0%, rgba(40, 53, 147, 0.8) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border: 1px solid rgba(52, 152, 219, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .tech-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 1.5rem 0;
+        }
+
+        .tech-item {
+            background: rgba(52, 152, 219, 0.2);
+            color: #3498db;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(52, 152, 219, 0.4);
+        }
+
+        .tech-item:hover {
+            background: var(--accent);
+            color: #0a0e27;
+            transform: scale(1.05);
+        }
+
+        .architecture-layer {
+            background: rgba(15, 20, 40, 0.6);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 6px;
+            border-left: 4px solid #3498db;
+            backdrop-filter: blur(5px);
+        }
+
+        .architecture-layer h4 {
+            color: #3498db;
+            margin-top: 0;
+        }
+
+        .info-card {
+            background: rgba(25, 30, 50, 0.7);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 6px;
+            border-left: 4px solid #3498db;
+            backdrop-filter: blur(5px);
+        }
+
+        .info-card.warning {
+            background: rgba(230, 126, 34, 0.15);
+            border-left-color: #e67e22;
+        }
+
+        .info-card.success {
+            background: rgba(39, 174, 96, 0.15);
+            border-left-color: #27ae60;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(52, 152, 219, 0.2);
+        }
+
+        th {
+            background: rgba(26, 35, 126, 0.5);
+            color: white;
+        }
+
+        tr:hover {
+            background: rgba(52, 152, 219, 0.1);
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            border: 1px solid rgba(52, 152, 219, 0.3);
+        }
+
+        .highlight {
+            color: #3498db;
+            font-weight: 600;
+        }
+
+        footer {
+            background: rgba(15, 20, 40, 0.9);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+            border-top: 2px solid rgba(52, 152, 219, 0.3);
+            color: #bdc3c7;
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 1rem 1.5rem;
+            }
+
+            section {
+                padding: 1.5rem 2rem;
+            }
+
+            .side-nav {
+                width: 280px;
+                right: -280px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <button class="nav-toggle" onclick="toggleNav()">☰ Navigation</button>
+
+    <nav class="side-nav" id="sideNav">
+        <h3>Contents</h3>
+        <ul>
+            <li><a href="#summary" onclick="closeNav()">Executive Summary</a></li>
+            <li><a href="#architecture" onclick="closeNav()">System Architecture</a></li>
+            <li><a href="#contribution1" onclick="closeNav()">Full-Stack IoT Integration</a></li>
+            <li><a href="#contribution2" onclick="closeNav()">Modular Architecture</a></li>
+            <li><a href="#contribution3" onclick="closeNav()">UWP Deployment</a></li>
+            <li><a href="#contribution4" onclick="closeNav()">MRTK Interactions</a></li>
+            <li><a href="#contribution5" onclick="closeNav()">JSON Parsing</a></li>
+            <li><a href="#problems" onclick="closeNav()">Problem-Solving</a></li>
+            <li><a href="#results" onclick="closeNav()">Results & Metrics</a></li>
+            <li><a href="#skills" onclick="closeNav()">Skills Demonstrated</a></li>
+            <li><a href="#timeline" onclick="closeNav()">Project Timeline</a></li>
+            <li><a href="#lessons" onclick="closeNav()">Lessons Learned</a></li>
+            <li><a href="#future" onclick="closeNav()">Future Enhancements</a></li>
+        </ul>
+    </nav>
+
+    <div class="overlay" id="overlay" onclick="closeNav()"></div>
+
+    <header class="header">
+        <h1>SIF-402 HoloLens AR Monitoring System</h1>
+        <p class="header-subtitle">Mixed Reality Interface for Industrial Automation</p>
+        <div class="header-meta">
+            <strong>Hamza Sallam</strong> | Uppsala University | MSc Computer Science - Industrial Analytics | Oct 2025 - Jan 2026
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Executive Summary -->
+        <section id="summary">
+            <h2>Executive Summary</h2>
+            
+            <p>This portfolio documents the development of an end-to-end Mixed Reality monitoring system that bridges industrial automation with augmented reality interfaces. The SIF-402 AR Station Monitor project demonstrates the complete pipeline from OPC UA industrial protocols through REST APIs to immersive AR visualization on the Microsoft HoloLens 2.</p>
+
+            <p>The application renders real-time PLC telemetry data (hopper levels, station status, alarms) onto a spatial UI in the operator's field of view, enabling hands-free machinery monitoring. This project showcases the integration of diverse technologies including industrial protocols, middleware, game engines, and AR hardware into a cohesive system.</p>
+
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span class="stat-number">570+</span>
+                    <span class="stat-label">Lines of C# Code</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">60</span>
+                    <span class="stat-label">FPS Stable</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">&lt;100ms</span>
+                    <span class="stat-label">API Latency</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">8</span>
+                    <span class="stat-label">Technologies</span>
+                </div>
+            </div>
+
+            <h3>Key Achievements</h3>
+            <ul>
+                <li>Developed complete Unity application with 570+ lines of C# code across 7 modular scripts</li>
+                <li>Implemented Node-RED middleware bridging OPC UA and HTTP REST APIs</li>
+                <li>Achieved 60 FPS stable holographic rendering on HoloLens 2 with &lt;100ms API latency</li>
+                <li>Successfully resolved 7+ critical blocking issues across build, deployment, and networking</li>
+                <li>Integrated 8 different technologies into functional full-stack AR system</li>
+                <li>Demonstrated modular architecture enabling seamless swap between mock and live data sources</li>
+            </ul>
+
+            <p><strong>Note:</strong> All End-to-End Data work has been done through and with the help of Eric Dario Márquez León</p>
+
+            <h3>Technology Stack</h3>
+            <div class="tech-grid">
+                <span class="tech-item">Unity 2022.3 LTS</span>
+                <span class="tech-item">C#</span>
+                <span class="tech-item">MRTK 2.8.3</span>
+                <span class="tech-item">OpenXR</span>
+                <span class="tech-item">HoloLens 2</span>
+                <span class="tech-item">Node-RED</span>
+                <span class="tech-item">OPC UA</span>
+                <span class="tech-item">REST API</span>
+            </div>
+        </section>
+
+        <!-- System Architecture -->
+        <section id="architecture">
+            <h2>System Architecture</h2>
+            
+            <p>The system follows a four-layer architecture bridging industrial automation and augmented reality:</p>
+
+            <div class="architecture-layer">
+                <h4>Layer 1: Industrial PLC (Siemens B&R)</h4>
+                <ul>
+                    <li>Automation Runtime with three signals:</li>
+                    <li>MESPAOEE_udiRunningTime (UInt32)</li>
+                    <li>MESPAOEE_bAlarm (Boolean)</li>
+                    <li>MESPAEA_rCurrent (Float)</li>
+                </ul>
+            </div>
+
+            <div class="architecture-layer">
+                <h4>Layer 2: Node-RED Middleware (Port 1880)</h4>
+                <ul>
+                    <li>OPC UA Client connecting to opc.tcp://130.130.130.2:4840</li>
+                    <li>JavaScript function nodes for data transformation</li>
+                    <li>HTTP server nodes exposing REST endpoints</li>
+                </ul>
+            </div>
+
+            <div class="architecture-layer">
+                <h4>Layer 3: Unity Application</h4>
+                <ul>
+                    <li>ApiDataManager with UnityWebRequest (3-second polling)</li>
+                    <li>JSON parsing and deserialization</li>
+                    <li>Event-driven UI updates</li>
+                </ul>
+            </div>
+
+            <div class="architecture-layer">
+                <h4>Layer 4: HoloLens 2 Display</h4>
+                <ul>
+                    <li>MRTK UI components with hand tracking</li>
+                    <li>World Space Canvas (scale: 0.001)</li>
+                    <li>Real-time spatial visualization</li>
+                </ul>
+            </div>
+
+            <h3>Data Flow Mapping</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>PLC Signal</th>
+                        <th>API Endpoint</th>
+                        <th>Unity Display</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>MESPAOEE_udiRunningTime</td>
+                        <td>/mes/blue_latest</td>
+                        <td>Blue Hopper Level</td>
+                    </tr>
+                    <tr>
+                        <td>MESPAOEE_bAlarm</td>
+                        <td>/mes/yellow_latest</td>
+                        <td>Yellow Hopper + Alarm</td>
+                    </tr>
+                    <tr>
+                        <td>MESPAEA_rCurrent</td>
+                        <td>/mes/red_latest</td>
+                        <td>Red Hopper Level</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Contribution 1 -->
+        <section id="contribution1">
+            <h2>Contribution 1: Full-Stack Industrial IoT Integration</h2>
+            
+            <h3>Challenge</h3>
+            <p>Industrial PLCs communicate via OPC UA protocol, which is incompatible with Unity's native capabilities. Direct integration would require complex low-level protocol implementation within Unity.</p>
+
+            <h3>Solution Architecture</h3>
+            <p>Architected a middleware layer using Node-RED to bridge OPC UA and HTTP REST APIs:</p>
+            <ol>
+                <li><strong>OPC UA Connection:</strong> Configured OPC UA client node connecting to PLC at opc.tcp://130.130.130.2:4840</li>
+                <li><strong>Data Transformation:</strong> Implemented JavaScript function nodes to transform PLC values into Unity-compatible JSON format</li>
+                <li><strong>HTTP Endpoints:</strong> Created three REST API endpoints serving real-time data</li>
+                <li><strong>State Management:</strong> Used flow variables to store latest values for immediate API responses</li>
+            </ol>
+
+            <h3>Technical Implementation</h3>
+            <h4>Node-RED Data Transformation Example:</h4>
+            <div class="code-block">
+// Transform PLC RunningTime to Hopper Level
+msg.payload = {
+    "station": {
+        "id": "SIF-402",
+        "status": "Running",
+        "recipe": "StandardMix_v2.3",
+        "timestamp": $now()
+    },
+    "hoppers": [{
+        "id": "hopper_blue",
+        "color": "blue",
+        "level": $floor(payload.read.value.value % 100),
+        "hasPellets": ($floor(payload.read.value.value % 100) > 10),
+        "status": ($floor(payload.read.value.value % 100) > 50) ? "OK" : "Low"
+    }],
+    "alarms": ($floor(payload.read.value.value % 100) < 20) ?
+        [{
+            "id": "alarm_low_runtime",
+            "severity": "warning",
+            "message": "Runtime-derived low level",
+            "timestamp": $now()
+        }]
+        : []
+}
+            </div>
+
+            <h4>Unity API Manager Implementation:</h4>
+            <div class="code-block">
+IEnumerator FetchHopperData(string endpoint, int hopperIndex,
+                           List&lt;AlarmData&gt; alarmsList,
+                           Action&lt;bool&gt; callback)
+{
+    string url = baseUrl + endpoint;
+    
+    using (UnityWebRequest request = UnityWebRequest.Get(url))
+    {
+        request.timeout = 5; // 5 second timeout
+        
+        yield return request.SendWebRequest();
+        
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            try
+            {
+                string json = request.downloadHandler.text;
+                HopperResponse response =
+                    JsonUtility.FromJson&lt;HopperResponse&gt;(json);
+                
+                // Update hopper data
+                currentData.hoppers[hopperIndex] = response.hoppers[0];
+                
+                // Collect alarms from this endpoint
+                if (response.alarms != null)
+                    alarmsList.AddRange(response.alarms);
+                
+                callback?.Invoke(true);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Parse error: {e.Message}");
+                callback?.Invoke(false);
+            }
+        }
+        else
+        {
+            // Mark hopper as offline on connection failure
+            currentData.hoppers[hopperIndex].status = "Offline";
+            OnConnectionError?.Invoke($"Failed to connect to {endpoint}");
+            callback?.Invoke(false);
+        }
+    }
+}
+            </div>
+
+            <h3>Impact</h3>
+            <ul>
+                <li>Enabled real-time (3-second refresh) visualization of live industrial data</li>
+                <li>Decoupled Unity from industrial protocol complexity</li>
+                <li>Provided flexible middleware for data transformation and validation</li>
+                <li>Achieved &lt;100ms API response time for low-latency monitoring</li>
+            </ul>
+        </section>
+
+        <!-- Contribution 2 -->
+        <section id="contribution2">
+            <h2>Contribution 2: Modular Data-UI Architecture</h2>
+            
+            <h3>Challenge</h3>
+            <p>Need flexibility to switch between mock JSON data (development) and live API data (production) without breaking existing UI bindings or requiring code changes.</p>
+
+            <h3>Solution: Three-Layer Architecture</h3>
+            
+            <h4>Layer 1: Data Structures (DataClasses.cs)</h4>
+            <p>Centralized data structure definitions shared by all components:</p>
+            <div class="code-block">
+using System;
+
+[Serializable]
+public class StationData
+{
+    public Station station;
+    public HopperData[] hoppers;
+    public AlarmData[] alarms;
+}
+
+[Serializable]
+public class Station
+{
+    public string id;
+    public string status;
+    public string recipe;
+    public string timestamp;
+}
+
+[Serializable]
+public class HopperData
+{
+    public string id;
+    public string color;
+    public int level;
+    public bool hasPellets;
+    public string status;
+}
+
+[Serializable]
+public class AlarmData
+{
+    public string id;
+    public string severity;
+    public string message;
+    public string timestamp;
+}
+            </div>
+
+            <h4>Layer 2: Data Providers (Swappable)</h4>
+            <p>Two implementations with identical interface:</p>
+            <ul>
+                <li><strong>MockDataManager:</strong> Loads from JSON Resources for offline development</li>
+                <li><strong>ApiDataManager:</strong> Fetches from Node-RED REST endpoints for live deployment</li>
+            </ul>
+
+            <h4>Layer 3: Presentation Layer (StationInfoDisplay)</h4>
+            <p>Event-driven UI updates consuming StationData regardless of source:</p>
+            <div class="code-block">
+public class StationInfoDisplay : MonoBehaviour
+{
+    [Header("Data Manager")]
+    public ApiDataManager apiDataManager;
+    
+    [Header("UI Text Fields")]
+    public TextMeshProUGUI stationStatusText;
+    public TextMeshProUGUI recipeText;
+    public TextMeshProUGUI blueHopperData;
+    public TextMeshProUGUI yellowHopperData;
+    public TextMeshProUGUI redHopperData;
+    
+    void Start()
+    {
+        // Subscribe to data updates
+        if (apiDataManager != null)
+        {
+            apiDataManager.OnDataUpdated += OnDataReceived;
+            apiDataManager.OnConnectionError += OnError;
+        }
+    }
+    
+    void OnDestroy()
+    {
+        // Unsubscribe to prevent memory leaks
+        if (apiDataManager != null)
+        {
+            apiDataManager.OnDataUpdated -= OnDataReceived;
+            apiDataManager.OnConnectionError -= OnError;
+        }
+    }
+    
+    void OnDataReceived(StationData data)
+    {
+        UpdateDisplay(data);
+    }
+    
+    void UpdateDisplay(StationData data)
+    {
+        if (data == null) return;
+        
+        // Color-coded status feedback
+        if (stationStatusText != null && data.station != null)
+        {
+            stationStatusText.text = $"Station Status: {data.station.status}";
+            
+            switch (data.station.status)
+            {
+                case "Running":
+                    stationStatusText.color = Color.green;
+                    break;
+                case "Alarm":
+                    stationStatusText.color = Color.red;
+                    break;
+                case "Warning":
+                    stationStatusText.color = Color.yellow;
+                    break;
+                case "Disconnected":
+                case "Connecting...":
+                    stationStatusText.color = Color.gray;
+                    break;
+            }
+        }
+        
+        // Update recipe information
+        if (recipeText != null && data.station != null)
+        {
+            recipeText.text = $"Recipe: {data.station.recipe}";
+        }
+        
+        // Update all hopper displays
+        if (data.hoppers != null && data.hoppers.Length >= 3)
+        {
+            UpdateHopperDisplay(blueHopperData, data.hoppers[0]);
+            UpdateHopperDisplay(yellowHopperData, data.hoppers[1]);
+            UpdateHopperDisplay(redHopperData, data.hoppers[2]);
+        }
+    }
+    
+    void UpdateHopperDisplay(TextMeshProUGUI textField, HopperData hopper)
+    {
+        if (textField == null || hopper == null) return;
+        
+        textField.text = $"Level: {hopper.level}%\n" +
+                        $"Present: {(hopper.hasPellets ? "Yes" : "No")}\n" +
+                        $"Status: {hopper.status}";
+        
+        // Color code based on status
+        if (hopper.status == "Offline")
+            textField.color = Color.gray;
+        else if (hopper.status == "Low" || hopper.status == "Empty")
+            textField.color = new Color(1f, 0.5f, 0.5f); // Light red
+        else
+            textField.color = Color.white;
+    }
+}
+            </div>
+
+            <h3>Impact</h3>
+            <ul>
+                <li>Developed entire UI and interaction logic using mock data</li>
+                <li>Switched to live PLC data by swapping single component reference</li>
+                <li>Zero UI code changes required for production deployment</li>
+                <li>Enabled parallel development: UI team using mock data while backend team integrates PLC</li>
+            </ul>
+        </section>
+
+        <!-- Contribution 3 -->
+        <section id="contribution3">
+            <h2>Contribution 3: UWP Deployment Pipeline Mastery</h2>
+            
+            <h3>Challenge</h3>
+            <p>HoloLens 2 requires ARM64 UWP builds with strict OpenXR configuration, creating multi-layered deployment complexity spanning Unity, Visual Studio, and device settings.</p>
+
+            <h3>Build Configuration Management</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Setting</th>
+                        <th>Required Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Build Type</td>
+                        

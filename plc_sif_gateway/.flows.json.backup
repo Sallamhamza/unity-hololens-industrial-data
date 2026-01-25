@@ -1,0 +1,5510 @@
+[
+    {
+        "id": "16253f37594af6b7",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d85dd4e7.e244b",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "279c41ee2e7ec94d",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "728b4f57863eb686",
+        "type": "tab",
+        "label": "PLC_3_signals_Out_File_OK",
+        "disabled": true,
+        "info": "PLC_3_signals_Out_File",
+        "env": []
+    },
+    {
+        "id": "cdaeea4ad0360d20",
+        "type": "tab",
+        "label": "sim_3_signals_Out_UnityTest_OK",
+        "disabled": true,
+        "info": "Flow_3signalsSim_ReadyForUnityTest 21Nov25",
+        "env": []
+    },
+    {
+        "id": "f1daa3e7d6f0c6a3",
+        "type": "tab",
+        "label": "Feeder Caps API",
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "tab_feeders",
+        "type": "tab",
+        "label": "Feeder Hybrid OPC UA",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "508f8d5d8e511b61",
+        "type": "tab",
+        "label": "PLC_3_Actual_signals_single_EP_OK",
+        "disabled": true,
+        "info": "PLC_3_signals_Out_File",
+        "env": []
+    },
+    {
+        "id": "daf57f3632673757",
+        "type": "tab",
+        "label": "SIF402 OPCUA → REST",
+        "disabled": false,
+        "info": "PLC_3_Actual_signals_single_EP_OK"
+    },
+    {
+        "id": "bc6471816c7844a9",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://OurLaptop:53530/OPCUA/SimulationServer",
+        "secpol": "None",
+        "secmode": "None",
+        "none": true,
+        "login": false,
+        "usercert": false,
+        "usercertificate": "",
+        "userprivatekey": ""
+    },
+    {
+        "id": "5a1ac14b.4d0f38",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://130.130.130.2:4840/UA/EmbeddedServer",
+        "secpol": "None",
+        "secmode": "None",
+        "none": true,
+        "login": false,
+        "usercert": false,
+        "usercertificate": "",
+        "userprivatekey": "",
+        "info": "with host ip:\r\nopc.tcp://192.168.65.254:53530/OPCUA/SimulationServer"
+    },
+    {
+        "id": "1e7b05e31dd949f3",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://130.130.130.5:4840",
+        "secpol": "None",
+        "secmode": "None",
+        "none": true,
+        "login": false,
+        "usercert": false,
+        "usercertificate": "",
+        "userprivatekey": ""
+    },
+    {
+        "id": "28b5687f4fd2b40c",
+        "type": "ui-base",
+        "name": "Dashboard",
+        "path": "/",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-control",
+            "ui-notification"
+        ]
+    },
+    {
+        "id": "opcua_endpoint",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://130.130.130.5:4840/UA/EmbeddedServer",
+        "secpol": "None",
+        "secmode": "None",
+        "none": true,
+        "login": false,
+        "usercert": false,
+        "usercertificate": "",
+        "userprivatekey": ""
+    },
+    {
+        "id": "be698b4ab16547bf",
+        "type": "OpcUa-Endpoint",
+        "z": "daf57f3632673757",
+        "endpoint": "opc.tcp://130.130.130.2:4840/UA/EmbeddedServer",
+        "secpol": "None",
+        "secmode": "None",
+        "none": true,
+        "login": false,
+        "usercert": false,
+        "usercertificate": "",
+        "userprivatekey": ""
+    },
+    {
+        "id": "37d3f8bb713d74f4",
+        "type": "inject",
+        "z": "16253f37594af6b7",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 200,
+        "wires": [
+            [
+                "ddadebfa90c83c16"
+            ]
+        ]
+    },
+    {
+        "id": "3b25388d1be4453d",
+        "type": "inject",
+        "z": "16253f37594af6b7",
+        "name": "Disconnect",
+        "props": [
+            {
+                "p": "action",
+                "v": "disconnect",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 240,
+        "y": 280,
+        "wires": [
+            [
+                "5e9ff8d62009cce2"
+            ]
+        ]
+    },
+    {
+        "id": "ee51f9804aed9353",
+        "type": "debug",
+        "z": "16253f37594af6b7",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 870,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "19f724539cac24ae",
+        "type": "inject",
+        "z": "16253f37594af6b7",
+        "name": "Connect",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 340,
+        "wires": [
+            [
+                "0527d8662773f724"
+            ]
+        ]
+    },
+    {
+        "id": "f51a14507dc17b69",
+        "type": "inject",
+        "z": "16253f37594af6b7",
+        "name": "Reconnect",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 280,
+        "y": 420,
+        "wires": [
+            [
+                "1578860caf6ef5e5"
+            ]
+        ]
+    },
+    {
+        "id": "0527d8662773f724",
+        "type": "function",
+        "z": "16253f37594af6b7",
+        "name": "set options",
+        "func": "msg.action = 'connect';\nmsg.OpcUaEndpoint = {}; // Initialize msg.OpcUaEndpoint as an empty object\nmsg.OpcUaEndpoint.endpoint = 'opc.tcp://130.130.130.2:4840/UA/EmbeddedServer';\nmsg.OpcUaEndpoint.securityMode = 'None';\nmsg.OpcUaEndpoint.securityPolicy = 'None';\nmsg.OpcUaEndpoint.login = false;\nreturn msg;\n//opc.tcp://130.130.130.2:4840\n//opc.tcp://OurLaptop:53530/OPCUA/SimulationServer'",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 340,
+        "wires": [
+            [
+                "5e9ff8d62009cce2"
+            ]
+        ]
+    },
+    {
+        "id": "1578860caf6ef5e5",
+        "type": "function",
+        "z": "16253f37594af6b7",
+        "name": "set options",
+        "func": "msg.action = 'connect';\nmsg.OpcUaEndpoint = {}; // Initialize msg.OpcUaEndpoint as an empty object\nmsg.OpcUaEndpoint.endpoint = 'opc.tcp://OurLaptop:53530/OPCUA/SimulationServer';\nmsg.OpcUaEndpoint.securityMode = 'None';\nmsg.OpcUaEndpoint.securityPolicy = 'None';\nmsg.OpcUaEndpoint.login = false;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 420,
+        "wires": [
+            [
+                "5e9ff8d62009cce2"
+            ]
+        ]
+    },
+    {
+        "id": "ddadebfa90c83c16",
+        "type": "OpcUa-Item",
+        "z": "16253f37594af6b7",
+        "item": "ns=6;s=::AsGlobalPV:MESPAOEE_udiRunningTime",
+        "datatype": "UInt32",
+        "value": "",
+        "name": "MESPAOEE_udiRunningTime",
+        "x": 390,
+        "y": 200,
+        "wires": [
+            [
+                "5e9ff8d62009cce2"
+            ]
+        ]
+    },
+    {
+        "id": "5e9ff8d62009cce2",
+        "type": "OpcUa-Client",
+        "z": "16253f37594af6b7",
+        "endpoint": "5a1ac14b.4d0f38",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": "",
+        "maxMessageSize": "",
+        "receiveBufferSize": "",
+        "sendBufferSize": "",
+        "setstatusandtime": false,
+        "keepsessionalive": false,
+        "name": "",
+        "applicationName": "",
+        "applicationUri": "",
+        "x": 660,
+        "y": 200,
+        "wires": [
+            [
+                "ee51f9804aed9353"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "e34ad19393e0a97d",
+        "type": "file",
+        "z": "16253f37594af6b7",
+        "d": true,
+        "name": "SIF402_Running_Time",
+        "filename": "D:\\Users\\Dario\\OneDrive\\UU\\Courses\\XR\\Project 2\\Output\\node-red-test-outputs\\SIF402_Running_Time.json",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 920,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ed421a9.d6319e8",
+        "type": "OpcUa-Client",
+        "z": "d85dd4e7.e244b",
+        "endpoint": "5a1ac14b.4d0f38",
+        "action": "readmultiple",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "useTransport": false,
+        "maxChunkCount": "",
+        "maxMessageSize": "",
+        "receiveBufferSize": "",
+        "sendBufferSize": "",
+        "setstatusandtime": false,
+        "keepsessionalive": true,
+        "name": "",
+        "applicationName": "",
+        "applicationUri": "",
+        "x": 720,
+        "y": 140,
+        "wires": [
+            [
+                "f993fd12.db5e98"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "d8a68c7a.a73008",
+        "type": "inject",
+        "z": "d85dd4e7.e244b",
+        "name": "Add item",
+        "props": [
+            {
+                "p": "payload",
+                "v": "",
+                "vt": "str"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 191,
+        "y": 98.80000305175781,
+        "wires": [
+            [
+                "46e629f357f0ed7c"
+            ]
+        ]
+    },
+    {
+        "id": "f993fd12.db5e98",
+        "type": "debug",
+        "z": "d85dd4e7.e244b",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 970,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "1335adce.7f46ba",
+        "type": "inject",
+        "z": "d85dd4e7.e244b",
+        "name": "Add item",
+        "props": [
+            {
+                "p": "payload",
+                "v": "",
+                "vt": "str"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 195.20001220703125,
+        "y": 164.8000030517578,
+        "wires": [
+            [
+                "6fe04c96b9a6f7c3"
+            ]
+        ]
+    },
+    {
+        "id": "2c050a3d.91f496",
+        "type": "inject",
+        "z": "d85dd4e7.e244b",
+        "name": "Read multiple items",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "readmultiple",
+        "payload": "",
+        "payloadType": "str",
+        "x": 380,
+        "y": 320,
+        "wires": [
+            [
+                "ed421a9.d6319e8"
+            ]
+        ]
+    },
+    {
+        "id": "690e4f9f.faeca",
+        "type": "inject",
+        "z": "d85dd4e7.e244b",
+        "name": "Clear nodeId array",
+        "props": [
+            {
+                "p": "payload",
+                "v": "",
+                "vt": "str"
+            },
+            {
+                "p": "topic",
+                "v": "clearitems",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "clearitems",
+        "payload": "",
+        "payloadType": "str",
+        "x": 372.2000274658203,
+        "y": 366.1999969482422,
+        "wires": [
+            [
+                "ed421a9.d6319e8"
+            ]
+        ]
+    },
+    {
+        "id": "46e629f357f0ed7c",
+        "type": "OpcUa-Item",
+        "z": "d85dd4e7.e244b",
+        "item": "ns=6;s=::AsGlobalPV:MESPAOEE_udiRunningTime",
+        "datatype": "UInt32",
+        "value": "",
+        "name": "MESPAOEE_udiRunningTime",
+        "x": 430,
+        "y": 80,
+        "wires": [
+            [
+                "ed421a9.d6319e8"
+            ]
+        ]
+    },
+    {
+        "id": "6fe04c96b9a6f7c3",
+        "type": "OpcUa-Item",
+        "z": "d85dd4e7.e244b",
+        "item": "ns=6;s=::AsGlobalPV:MESPAOEE_bAlarm",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "MESPAOEE_bAlarm",
+        "x": 400,
+        "y": 160,
+        "wires": [
+            [
+                "ed421a9.d6319e8"
+            ]
+        ]
+    },
+    {
+        "id": "d9d1c55ec4c6b7c5",
+        "type": "inject",
+        "z": "d85dd4e7.e244b",
+        "name": "Add item",
+        "props": [
+            {
+                "p": "payload",
+                "v": "",
+                "vt": "str"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 200,
+        "y": 240,
+        "wires": [
+            [
+                "1431b391d0f4c1f0"
+            ]
+        ]
+    },
+    {
+        "id": "1431b391d0f4c1f0",
+        "type": "OpcUa-Item",
+        "z": "d85dd4e7.e244b",
+        "item": "ns=6;s=::AsGlobalPV:MESPAEA_rCurrent",
+        "datatype": "Float",
+        "value": "",
+        "name": "MESPAEA_rCurrent",
+        "x": 404.79998779296875,
+        "y": 235.1999969482422,
+        "wires": [
+            [
+                "ed421a9.d6319e8"
+            ]
+        ]
+    },
+    {
+        "id": "b10d80653c5c3785",
+        "type": "file",
+        "z": "d85dd4e7.e244b",
+        "name": "",
+        "filename": "text_out_16Nov25.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 1200,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "06151c186d0d044e",
+        "type": "inject",
+        "z": "d85dd4e7.e244b",
+        "name": "Disconnect",
+        "props": [
+            {
+                "p": "action",
+                "v": "disconnect",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 420,
+        "y": 420,
+        "wires": [
+            [
+                "ed421a9.d6319e8"
+            ]
+        ]
+    },
+    {
+        "id": "2e09d01eb26d7b95",
+        "type": "inject",
+        "z": "d85dd4e7.e244b",
+        "name": "Connect",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 531.111083984375,
+        "y": 479.1111145019531,
+        "wires": [
+            [
+                "ed421a9.d6319e8"
+            ]
+        ]
+    },
+    {
+        "id": "987eb10ed95beb50",
+        "type": "function",
+        "z": "d85dd4e7.e244b",
+        "name": "Store OPC values",
+        "func": "// Get existing values or start new\nlet opcValues = flow.get('opcValues') || {};\n\n// The OPC UA node outputs an array of { nodeId, value }\nif (Array.isArray(msg.payload)) {\n    msg.payload.forEach(item => {\n        // You can map nodeIds to friendly names\n        let tagName;\n        switch(item.nodeId) {\n            case 'ns=3;i=1002': tagName = 'MESPAEA_rCurrent'; break;\n            case 'ns=3;i=1003': tagName = 'MESPAOEE_uiTotalUnits'; break;\n            case 'ns=3;i=1004': tagName = 'MESPAOEE_udiRunningTime'; break;\n            default: tagName = item.nodeId;\n        }\n        opcValues[tagName] = item.value;\n    });\n\n    // Store in flow context\n    flow.set('opcValues', opcValues);\n    node.status({text: JSON.stringify(opcValues)});\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 280,
+        "wires": [
+            [
+                "b10d80653c5c3785"
+            ]
+        ]
+    },
+    {
+        "id": "3a442bd08eefcbd1",
+        "type": "http in",
+        "z": "d85dd4e7.e244b",
+        "name": "GET /api/latest",
+        "url": "/api/latest",
+        "method": "get",
+        "x": 760,
+        "y": 460,
+        "wires": [
+            [
+                "51ba42276da184af"
+            ]
+        ]
+    },
+    {
+        "id": "51ba42276da184af",
+        "type": "function",
+        "z": "d85dd4e7.e244b",
+        "name": "Return OPC values",
+        "func": "let opcValues = flow.get('opcValues');\nif (!opcValues || Object.keys(opcValues).length === 0) {\n    msg.payload = { error: 'No OPC UA data available yet' };\n    msg.statusCode = 404;\n} else {\n    msg.payload = opcValues;\n    msg.statusCode = 200;\n}\nreturn msg;",
+        "outputs": 1,
+        "x": 1010,
+        "y": 460,
+        "wires": [
+            [
+                "d7c5b0fa4349bdcc"
+            ]
+        ]
+    },
+    {
+        "id": "d7c5b0fa4349bdcc",
+        "type": "http response",
+        "z": "d85dd4e7.e244b",
+        "name": "",
+        "x": 1200,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "7bce3e7bf08f0d28",
+        "type": "function",
+        "z": "d85dd4e7.e244b",
+        "name": "function 1",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0369e0c6d6a8fb85",
+        "type": "OpcUa-Item",
+        "z": "279c41ee2e7ec94d",
+        "item": "ns=3;i=1002",
+        "datatype": "Double",
+        "value": "",
+        "name": "Random",
+        "x": 340,
+        "y": 100,
+        "wires": [
+            [
+                "ac102da704b986f7"
+            ]
+        ]
+    },
+    {
+        "id": "ba6cd7a2b7639f3f",
+        "type": "inject",
+        "z": "279c41ee2e7ec94d",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 100,
+        "wires": [
+            [
+                "0369e0c6d6a8fb85"
+            ]
+        ]
+    },
+    {
+        "id": "0eb707d8f90027d6",
+        "type": "inject",
+        "z": "279c41ee2e7ec94d",
+        "name": "Disconnect",
+        "props": [
+            {
+                "p": "action",
+                "v": "disconnect",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 320,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "34b09de08867e375",
+        "type": "inject",
+        "z": "279c41ee2e7ec94d",
+        "name": "Connect",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 300,
+        "y": 480,
+        "wires": [
+            [
+                "fbe284add9168327"
+            ]
+        ]
+    },
+    {
+        "id": "d93d3970a90172da",
+        "type": "inject",
+        "z": "279c41ee2e7ec94d",
+        "name": "Reconnect",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 360,
+        "y": 560,
+        "wires": [
+            [
+                "3fcdf22e21902c64"
+            ]
+        ]
+    },
+    {
+        "id": "fbe284add9168327",
+        "type": "function",
+        "z": "279c41ee2e7ec94d",
+        "name": "set options",
+        "func": "msg.action = 'connect';\nmsg.OpcUaEndpoint = {}; // Initialize msg.OpcUaEndpoint as an empty object\nmsg.OpcUaEndpoint.endpoint = 'opc.tcp://OurLaptop:53530/OPCUA/SimulationServer';\nmsg.OpcUaEndpoint.securityMode = 'None';\nmsg.OpcUaEndpoint.securityPolicy = 'None';\nmsg.OpcUaEndpoint.login = false;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 480,
+        "wires": [
+            [
+                "ac102da704b986f7"
+            ]
+        ]
+    },
+    {
+        "id": "3fcdf22e21902c64",
+        "type": "function",
+        "z": "279c41ee2e7ec94d",
+        "name": "set options",
+        "func": "msg.action = 'connect';\nmsg.OpcUaEndpoint = {}; // Initialize msg.OpcUaEndpoint as an empty object\nmsg.OpcUaEndpoint.endpoint = 'opc.tcp://130.130.130.2:4840';\nmsg.OpcUaEndpoint.securityMode = 'None';\nmsg.OpcUaEndpoint.securityPolicy = 'None';\nmsg.OpcUaEndpoint.login = false;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "84f43dc9ec38fa4a",
+        "type": "debug",
+        "z": "279c41ee2e7ec94d",
+        "name": "msg_Client",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topic",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "ac102da704b986f7",
+        "type": "OpcUa-Client",
+        "z": "279c41ee2e7ec94d",
+        "endpoint": "bc6471816c7844a9",
+        "action": "readmultiple",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "setstatusandtime": false,
+        "keepsessionalive": false,
+        "name": "",
+        "applicationName": "",
+        "applicationUri": "",
+        "x": 580,
+        "y": 200,
+        "wires": [
+            [
+                "84f43dc9ec38fa4a"
+            ],
+            [],
+            [
+                "08fd4796c1d9360a"
+            ]
+        ]
+    },
+    {
+        "id": "08fd4796c1d9360a",
+        "type": "function",
+        "z": "279c41ee2e7ec94d",
+        "name": "function 2",
+        "func": "let msgs = []\nfor (let index = 0; index < msg.payload.length; index++) {\n    const signal_payload = msg.payload[index];\n    const signal_topic = msg.topic[index];\n    msgs.push(\n        {\n            payload : signal_payload,\n            topic : signal_topic\n        }\n    )\n}\nreturn msgs",
+        "outputs": 3,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 340,
+        "wires": [
+            [
+                "22e063573dc1fb37",
+                "0bf06dba674e4bdd"
+            ],
+            [
+                "fb5605122898efe0"
+            ],
+            [
+                "3a2e4ceb93df68c5"
+            ]
+        ]
+    },
+    {
+        "id": "6bf568e501375927",
+        "type": "OpcUa-Item",
+        "z": "279c41ee2e7ec94d",
+        "item": "ns=3;i=1006",
+        "datatype": "Double",
+        "value": "",
+        "name": "Triangle",
+        "x": 340,
+        "y": 160,
+        "wires": [
+            [
+                "ac102da704b986f7"
+            ]
+        ]
+    },
+    {
+        "id": "46ad0e2793613ec8",
+        "type": "inject",
+        "z": "279c41ee2e7ec94d",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 160,
+        "wires": [
+            [
+                "6bf568e501375927"
+            ]
+        ]
+    },
+    {
+        "id": "36e8a0cdb52ed7f3",
+        "type": "OpcUa-Item",
+        "z": "279c41ee2e7ec94d",
+        "item": "ns=3;i=1004",
+        "datatype": "Double",
+        "value": "",
+        "name": "Sinusoid",
+        "x": 340,
+        "y": 220,
+        "wires": [
+            [
+                "ac102da704b986f7"
+            ]
+        ]
+    },
+    {
+        "id": "190a614ce9b84cbd",
+        "type": "inject",
+        "z": "279c41ee2e7ec94d",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 220,
+        "wires": [
+            [
+                "36e8a0cdb52ed7f3"
+            ]
+        ]
+    },
+    {
+        "id": "ec1ca0d15031ea3f",
+        "type": "inject",
+        "z": "279c41ee2e7ec94d",
+        "name": "Read multiple items",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "readmultiple",
+        "payload": "",
+        "payloadType": "str",
+        "x": 310,
+        "y": 300,
+        "wires": [
+            [
+                "ac102da704b986f7"
+            ]
+        ]
+    },
+    {
+        "id": "22e063573dc1fb37",
+        "type": "debug",
+        "z": "279c41ee2e7ec94d",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "msg.topic & msg.payload",
+        "targetType": "jsonata",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "fb5605122898efe0",
+        "type": "debug",
+        "z": "279c41ee2e7ec94d",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "3a2e4ceb93df68c5",
+        "type": "debug",
+        "z": "279c41ee2e7ec94d",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 981.111083984375,
+        "y": 439.1111145019531,
+        "wires": []
+    },
+    {
+        "id": "8c5a9631fced439d",
+        "type": "file",
+        "z": "279c41ee2e7ec94d",
+        "name": "output to file",
+        "filename": "D:\\Code\\XR\\XR_Project_2\\node-red\\tests\\Nov17.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 850,
+        "y": 580,
+        "wires": [
+            [
+                "f83d02cc452f5f36"
+            ]
+        ]
+    },
+    {
+        "id": "0bf06dba674e4bdd",
+        "type": "change",
+        "z": "279c41ee2e7ec94d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "msg.topic & msg.payload",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 460,
+        "wires": [
+            [
+                "8c5a9631fced439d"
+            ]
+        ]
+    },
+    {
+        "id": "f83d02cc452f5f36",
+        "type": "debug",
+        "z": "279c41ee2e7ec94d",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "8da56853264ca8b8",
+        "type": "OpcUa-Item",
+        "z": "728b4f57863eb686",
+        "item": "ns=6;s=::AsGlobalPV:MESPAOEE_udiRunningTime",
+        "datatype": "UInt32",
+        "value": "",
+        "name": "MESPAOEE_udiRunningTime",
+        "x": 410,
+        "y": 100,
+        "wires": [
+            [
+                "ad14d3029d07f208"
+            ]
+        ]
+    },
+    {
+        "id": "7526d51c6a0f670a",
+        "type": "inject",
+        "z": "728b4f57863eb686",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 100,
+        "wires": [
+            [
+                "8da56853264ca8b8"
+            ]
+        ]
+    },
+    {
+        "id": "f4f6f0af1de50a99",
+        "type": "inject",
+        "z": "728b4f57863eb686",
+        "name": "Disconnect",
+        "props": [
+            {
+                "p": "action",
+                "v": "disconnect",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 180,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e18c880da5efbb29",
+        "type": "inject",
+        "z": "728b4f57863eb686",
+        "name": "Connect",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 540,
+        "wires": [
+            [
+                "d7644f196b125bb0"
+            ]
+        ]
+    },
+    {
+        "id": "4e2da52376a66a32",
+        "type": "inject",
+        "z": "728b4f57863eb686",
+        "name": "Reconnect",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 620,
+        "wires": [
+            [
+                "2d0e0a4f0ef4d984"
+            ]
+        ]
+    },
+    {
+        "id": "d7644f196b125bb0",
+        "type": "function",
+        "z": "728b4f57863eb686",
+        "name": "set options",
+        "func": "msg.action = 'connect';\nmsg.OpcUaEndpoint = {}; // Initialize msg.OpcUaEndpoint as an empty object\nmsg.OpcUaEndpoint.endpoint = 'opc.tcp://130.130.130.2:4840/UA/EmbeddedServer';\nmsg.OpcUaEndpoint.securityMode = 'None';\nmsg.OpcUaEndpoint.securityPolicy = 'None';\nmsg.OpcUaEndpoint.login = false;\nreturn msg;\n//'opc.tcp://OurLaptop:53530/OPCUA/SimulationServer'",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 540,
+        "wires": [
+            [
+                "ad14d3029d07f208"
+            ]
+        ]
+    },
+    {
+        "id": "2d0e0a4f0ef4d984",
+        "type": "function",
+        "z": "728b4f57863eb686",
+        "name": "set options",
+        "func": "msg.action = 'connect';\nmsg.OpcUaEndpoint = {}; // Initialize msg.OpcUaEndpoint as an empty object\nmsg.OpcUaEndpoint.endpoint = 'opc.tcp://130.130.130.2:4840';\nmsg.OpcUaEndpoint.securityMode = 'None';\nmsg.OpcUaEndpoint.securityPolicy = 'None';\nmsg.OpcUaEndpoint.login = false;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8a4fc1608a1307be",
+        "type": "debug",
+        "z": "728b4f57863eb686",
+        "name": "msg_Client",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topic",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 870,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "ad14d3029d07f208",
+        "type": "OpcUa-Client",
+        "z": "728b4f57863eb686",
+        "endpoint": "5a1ac14b.4d0f38",
+        "action": "readmultiple",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "setstatusandtime": false,
+        "keepsessionalive": false,
+        "name": "",
+        "applicationName": "",
+        "applicationUri": "",
+        "x": 640,
+        "y": 180,
+        "wires": [
+            [
+                "8a4fc1608a1307be"
+            ],
+            [],
+            [
+                "8655ca47f46ebdee"
+            ]
+        ]
+    },
+    {
+        "id": "8655ca47f46ebdee",
+        "type": "function",
+        "z": "728b4f57863eb686",
+        "name": "MergePayload",
+        "func": "let msgs = []\nfor (let index = 0; index < msg.payload.length; index++) {\n    const signal_payload = msg.payload[index];\n    const signal_topic = msg.topic[index];\n    msgs.push(\n        {\n            payload : signal_payload,\n            topic : signal_topic\n        }\n    )\n}\nreturn msgs",
+        "outputs": 3,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 520,
+        "wires": [
+            [
+                "54a71428477ad96f"
+            ],
+            [],
+            [
+                "1c4895a7a8dd5fd9",
+                "db6c6dcbbf6b79f1",
+                "96dadabcae942424"
+            ]
+        ]
+    },
+    {
+        "id": "a683bf0b831585a2",
+        "type": "OpcUa-Item",
+        "z": "728b4f57863eb686",
+        "item": "ns=6;s=::AsGlobalPV:MESPAOEE_bAlarm",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "MESPAOEE_bAlarm",
+        "x": 380,
+        "y": 160,
+        "wires": [
+            [
+                "ad14d3029d07f208"
+            ]
+        ]
+    },
+    {
+        "id": "99accd18a8696c1f",
+        "type": "inject",
+        "z": "728b4f57863eb686",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 160,
+        "wires": [
+            [
+                "a683bf0b831585a2"
+            ]
+        ]
+    },
+    {
+        "id": "7c16312b96a0e97d",
+        "type": "OpcUa-Item",
+        "z": "728b4f57863eb686",
+        "item": "ns=6;s=::AsGlobalPV:MESPAEA_rCurrent",
+        "datatype": "Float",
+        "value": "",
+        "name": "MESPAEA_rCurrent",
+        "x": 380,
+        "y": 220,
+        "wires": [
+            [
+                "ad14d3029d07f208"
+            ]
+        ]
+    },
+    {
+        "id": "5268f48439a82c38",
+        "type": "inject",
+        "z": "728b4f57863eb686",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 220,
+        "wires": [
+            [
+                "7c16312b96a0e97d"
+            ]
+        ]
+    },
+    {
+        "id": "62868a4b22eff877",
+        "type": "inject",
+        "z": "728b4f57863eb686",
+        "name": "Read multiple items",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "readmultiple",
+        "payload": "",
+        "payloadType": "str",
+        "x": 340,
+        "y": 340,
+        "wires": [
+            [
+                "ad14d3029d07f208"
+            ]
+        ]
+    },
+    {
+        "id": "54a71428477ad96f",
+        "type": "debug",
+        "z": "728b4f57863eb686",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "msg.topic & msg.payload",
+        "targetType": "jsonata",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "70bc7fac12c5a488",
+        "type": "debug",
+        "z": "728b4f57863eb686",
+        "name": "debug 5",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1720,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "0f3018a9e6c129bc",
+        "type": "debug",
+        "z": "728b4f57863eb686",
+        "name": "debug 6",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1700,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "1c4895a7a8dd5fd9",
+        "type": "change",
+        "z": "728b4f57863eb686",
+        "name": "PayloadRunningTime",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t  \"meta\": topic,\t  \"read\": payload\t}\t",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 900,
+        "y": 460,
+        "wires": [
+            [
+                "254b63a089331d41",
+                "a58152cdbf760178"
+            ]
+        ]
+    },
+    {
+        "id": "7ab9bd1a18d80faa",
+        "type": "debug",
+        "z": "728b4f57863eb686",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1700,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "1db94ad3ab76a5c7",
+        "type": "http in",
+        "z": "728b4f57863eb686",
+        "name": "GET blue latest value",
+        "url": "/mes/blue_latest",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 800,
+        "y": 760,
+        "wires": [
+            [
+                "83fd706346a02200"
+            ]
+        ]
+    },
+    {
+        "id": "83fd706346a02200",
+        "type": "function",
+        "z": "728b4f57863eb686",
+        "name": "Return latest value",
+        "func": "const data = flow.get(\"blue_lastSignal\");\n\nif (!data) {\n    msg.payload = { error: \"No data available yet\" };\n    msg.statusCode = 503;\n    return msg;\n}\n\nmsg.payload = data;\nmsg.headers = { \"Content-Type\": \"application/json\" };\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1010,
+        "y": 760,
+        "wires": [
+            [
+                "6f6712a836c4fee5"
+            ]
+        ]
+    },
+    {
+        "id": "6f6712a836c4fee5",
+        "type": "http response",
+        "z": "728b4f57863eb686",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1210,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "254b63a089331d41",
+        "type": "change",
+        "z": "728b4f57863eb686",
+        "name": "ChangeForUnityBlue",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t    \"station\": {\t        \"id\": \"SIF-402\",\t        \"status\": \"Running\",\t        \"recipe\": \"StandardMix_v2.3\",\t        \"timestamp\": $now()\t    },\t    \"hoppers\": [\t        {\t            \"id\": \"hopper_blue\",\t            \"color\": \"blue\",\t            \"level\": $floor(payload.read.value.value % 100),\t            \"hasPellets\": ($floor(payload.read.value.value % 100) > 10),\t            \"status\": ($floor(payload.read.value.value % 100) > 50) ? \"OK\" : \"Low\"\t        }\t    ],\t    \"alarms\": ($floor(payload.read.value.value % 100) < 20) ?\t        [\t            {\t                \"id\": \"alarm_low_runtime\",\t                \"severity\": \"warning\",\t                \"message\": \"Runtime-derived low level\",\t                \"timestamp\": $now()\t            }\t        ]\t    : []\t}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1120,
+        "y": 460,
+        "wires": [
+            [
+                "45bf0bc82a2572fb"
+            ]
+        ]
+    },
+    {
+        "id": "45bf0bc82a2572fb",
+        "type": "file",
+        "z": "728b4f57863eb686",
+        "name": "output to file",
+        "filename": "D:\\Code\\XR\\XR_Project_2\\node-red\\tests\\Nov22_PLCtoUnity.log",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 1330,
+        "y": 460,
+        "wires": [
+            [
+                "80a9cfee84eb52e7"
+            ]
+        ]
+    },
+    {
+        "id": "80a9cfee84eb52e7",
+        "type": "function",
+        "z": "728b4f57863eb686",
+        "name": "Store blue latest value",
+        "func": "flow.set(\"blue_lastSignal\", msg.payload);\nreturn msg;  // optional, keeps flow going if needed\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1520,
+        "y": 460,
+        "wires": [
+            [
+                "7ab9bd1a18d80faa"
+            ]
+        ]
+    },
+    {
+        "id": "db6c6dcbbf6b79f1",
+        "type": "change",
+        "z": "728b4f57863eb686",
+        "name": "PayloadAlarm",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t  \"meta\": topic,\t  \"read\": payload\t}\t",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 520,
+        "wires": [
+            [
+                "044e7cd03ef99467"
+            ]
+        ]
+    },
+    {
+        "id": "044e7cd03ef99467",
+        "type": "change",
+        "z": "728b4f57863eb686",
+        "name": "ChangeForUnityYellow",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t    \"station\": {\t        \"id\": \"SIF-402\",\t        \"status\": payload.read.value.value ? \"Alarm\" : \"Running\",\t        \"recipe\": \"StandardMix_v2.3\",\t        \"timestamp\": $now()\t    },\t    \"hoppers\": [\t        {\t            \"id\": \"hopper_yellow\",\t            \"color\": \"yellow\",\t            \"level\": payload.read.value.value ? 10 : 90,\t            \"hasPellets\": true,\t            \"status\": payload.read.value.value ? \"Low\" : \"OK\"\t        }\t    ],\t    \"alarms\": payload.read.value.value ?\t        [\t            {\t                \"id\": \"alarm_station\",\t                \"severity\": \"critical\",\t                \"message\": \"Station in alarm\",\t                \"timestamp\": $now()\t            }\t        ]\t    : []\t}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1100,
+        "y": 520,
+        "wires": [
+            [
+                "5f02f14d16e46e06"
+            ]
+        ]
+    },
+    {
+        "id": "5f02f14d16e46e06",
+        "type": "file",
+        "z": "728b4f57863eb686",
+        "name": "output to file",
+        "filename": "D:\\Code\\XR\\XR_Project_2\\node-red\\tests\\Nov22_PLCtoUnity.log",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 1330,
+        "y": 520,
+        "wires": [
+            [
+                "7c105b167f248400"
+            ]
+        ]
+    },
+    {
+        "id": "7c105b167f248400",
+        "type": "function",
+        "z": "728b4f57863eb686",
+        "name": "Store Yellow latest value",
+        "func": "flow.set(\"yellow_lastSignal\", msg.payload);\nreturn msg;  // optional, keeps flow going if needed\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1530,
+        "y": 520,
+        "wires": [
+            [
+                "70bc7fac12c5a488"
+            ]
+        ]
+    },
+    {
+        "id": "96dadabcae942424",
+        "type": "change",
+        "z": "728b4f57863eb686",
+        "name": "PayloadCurrent",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t  \"meta\": topic,\t  \"read\": payload\t}\t",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 580,
+        "wires": [
+            [
+                "c21f4c057e6269b5"
+            ]
+        ]
+    },
+    {
+        "id": "c21f4c057e6269b5",
+        "type": "change",
+        "z": "728b4f57863eb686",
+        "name": "ChangeForUnityRed",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t    \"station\": {\t        \"id\": \"SIF-402\",\t        \"status\": \"Running\",\t        \"recipe\": \"StandardMix_v2.3\",\t        \"timestamp\": $now()\t    },\t    \"hoppers\": [\t        {\t            \"id\": \"hopper_red\",\t            \"color\": \"red\",\t            \"level\": payload.read.value.value * 10, \t            \"hasPellets\": payload.read.value.value > 0.1,\t            \"status\": payload.read.value.value > 1 ? \"OK\" : \"Low\"\t        }\t    ],\t    \"alarms\": (payload.read.value.value > 1) ? [] : \t        [\t            {\t                \"id\": \"alarm_low_current\",\t                \"severity\": \"warning\",\t                \"message\": \"Low motor current\",\t                \"timestamp\": $now()\t            }\t        ]\t}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1100,
+        "y": 580,
+        "wires": [
+            [
+                "078f2d3f6d65f5e5"
+            ]
+        ]
+    },
+    {
+        "id": "078f2d3f6d65f5e5",
+        "type": "file",
+        "z": "728b4f57863eb686",
+        "name": "output to file",
+        "filename": "D:\\Code\\XR\\XR_Project_2\\node-red\\tests\\Nov22_PLCtoUnity.log",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 1330,
+        "y": 580,
+        "wires": [
+            [
+                "6b7ee8173d05d1a1"
+            ]
+        ]
+    },
+    {
+        "id": "6b7ee8173d05d1a1",
+        "type": "function",
+        "z": "728b4f57863eb686",
+        "name": "Store Red latest value",
+        "func": "flow.set(\"red_lastSignal\", msg.payload);\nreturn msg;  // optional, keeps flow going if needed\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1520,
+        "y": 580,
+        "wires": [
+            [
+                "0f3018a9e6c129bc"
+            ]
+        ]
+    },
+    {
+        "id": "c2c087b6c44c2f4b",
+        "type": "http in",
+        "z": "728b4f57863eb686",
+        "name": "GET yellow latest value",
+        "url": "/mes/yellow_latest",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 800,
+        "y": 840,
+        "wires": [
+            [
+                "44fbdf255c4c6433"
+            ]
+        ]
+    },
+    {
+        "id": "44fbdf255c4c6433",
+        "type": "function",
+        "z": "728b4f57863eb686",
+        "name": "Return latest value",
+        "func": "const data = flow.get(\"yellow_lastSignal\");\n\nif (!data) {\n    msg.payload = { error: \"No data available yet\" };\n    msg.statusCode = 503;\n    return msg;\n}\n\nmsg.payload = data;\nmsg.headers = { \"Content-Type\": \"application/json\" };\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1010,
+        "y": 840,
+        "wires": [
+            [
+                "ce7e85b758000ccb"
+            ]
+        ]
+    },
+    {
+        "id": "ce7e85b758000ccb",
+        "type": "http response",
+        "z": "728b4f57863eb686",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1210,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "423bf5b08debaebb",
+        "type": "http in",
+        "z": "728b4f57863eb686",
+        "name": "GET red latest value",
+        "url": "/mes/red_latest",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 790,
+        "y": 920,
+        "wires": [
+            [
+                "0ef7aebe20bafa3d"
+            ]
+        ]
+    },
+    {
+        "id": "0ef7aebe20bafa3d",
+        "type": "function",
+        "z": "728b4f57863eb686",
+        "name": "Return latest value",
+        "func": "const data = flow.get(\"red_lastSignal\");\n\nif (!data) {\n    msg.payload = { error: \"No data available yet\" };\n    msg.statusCode = 503;\n    return msg;\n}\n\nmsg.payload = data;\nmsg.headers = { \"Content-Type\": \"application/json\" };\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1010,
+        "y": 920,
+        "wires": [
+            [
+                "cd9c67071d123f12"
+            ]
+        ]
+    },
+    {
+        "id": "cd9c67071d123f12",
+        "type": "http response",
+        "z": "728b4f57863eb686",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1210,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "a58152cdbf760178",
+        "type": "debug",
+        "z": "728b4f57863eb686",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1280,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "8802a7a35b81fba8",
+        "type": "OpcUa-Item",
+        "z": "cdaeea4ad0360d20",
+        "item": "ns=3;i=1002",
+        "datatype": "Double",
+        "value": "",
+        "name": "Random",
+        "x": 340,
+        "y": 100,
+        "wires": [
+            [
+                "ebe1e3f413c16e6a"
+            ]
+        ]
+    },
+    {
+        "id": "27f9121cce383c7f",
+        "type": "inject",
+        "z": "cdaeea4ad0360d20",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 100,
+        "wires": [
+            [
+                "8802a7a35b81fba8"
+            ]
+        ]
+    },
+    {
+        "id": "6c8310dcbae93252",
+        "type": "inject",
+        "z": "cdaeea4ad0360d20",
+        "name": "Disconnect",
+        "props": [
+            {
+                "p": "action",
+                "v": "disconnect",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 320,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7d7b79f227350e11",
+        "type": "inject",
+        "z": "cdaeea4ad0360d20",
+        "name": "Connect",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 300,
+        "y": 480,
+        "wires": [
+            [
+                "1589d9441b128a45"
+            ]
+        ]
+    },
+    {
+        "id": "e6ec4aa77e10cca5",
+        "type": "inject",
+        "z": "cdaeea4ad0360d20",
+        "name": "Reconnect",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 360,
+        "y": 560,
+        "wires": [
+            [
+                "3f8255f9326cd18d"
+            ]
+        ]
+    },
+    {
+        "id": "1589d9441b128a45",
+        "type": "function",
+        "z": "cdaeea4ad0360d20",
+        "name": "set options",
+        "func": "msg.action = 'connect';\nmsg.OpcUaEndpoint = {}; // Initialize msg.OpcUaEndpoint as an empty object\nmsg.OpcUaEndpoint.endpoint = 'opc.tcp://OurLaptop:53530/OPCUA/SimulationServer';\nmsg.OpcUaEndpoint.securityMode = 'None';\nmsg.OpcUaEndpoint.securityPolicy = 'None';\nmsg.OpcUaEndpoint.login = false;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 480,
+        "wires": [
+            [
+                "ebe1e3f413c16e6a"
+            ]
+        ]
+    },
+    {
+        "id": "3f8255f9326cd18d",
+        "type": "function",
+        "z": "cdaeea4ad0360d20",
+        "name": "set options",
+        "func": "msg.action = 'connect';\nmsg.OpcUaEndpoint = {}; // Initialize msg.OpcUaEndpoint as an empty object\nmsg.OpcUaEndpoint.endpoint = 'opc.tcp://130.130.130.2:4840';\nmsg.OpcUaEndpoint.securityMode = 'None';\nmsg.OpcUaEndpoint.securityPolicy = 'None';\nmsg.OpcUaEndpoint.login = false;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1deeba5f30355464",
+        "type": "debug",
+        "z": "cdaeea4ad0360d20",
+        "name": "msg_Client",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topic",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "ebe1e3f413c16e6a",
+        "type": "OpcUa-Client",
+        "z": "cdaeea4ad0360d20",
+        "endpoint": "bc6471816c7844a9",
+        "action": "readmultiple",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "setstatusandtime": false,
+        "keepsessionalive": false,
+        "name": "",
+        "applicationName": "",
+        "applicationUri": "",
+        "x": 580,
+        "y": 200,
+        "wires": [
+            [
+                "1deeba5f30355464"
+            ],
+            [],
+            [
+                "84d21b0802868ee3"
+            ]
+        ]
+    },
+    {
+        "id": "84d21b0802868ee3",
+        "type": "function",
+        "z": "cdaeea4ad0360d20",
+        "name": "function 2",
+        "func": "let msgs = []\nfor (let index = 0; index < msg.payload.length; index++) {\n    const signal_payload = msg.payload[index];\n    const signal_topic = msg.topic[index];\n    msgs.push(\n        {\n            payload : signal_payload,\n            topic : signal_topic\n        }\n    )\n}\nreturn msgs",
+        "outputs": 3,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 340,
+        "wires": [
+            [
+                "a03fdf30ac5f34f1",
+                "3430a00c20602b08"
+            ],
+            [
+                "dbfceaa1e88d13e4"
+            ],
+            [
+                "dff707186a899df5"
+            ]
+        ]
+    },
+    {
+        "id": "7331d5d422932272",
+        "type": "OpcUa-Item",
+        "z": "cdaeea4ad0360d20",
+        "item": "ns=3;i=1006",
+        "datatype": "Double",
+        "value": "",
+        "name": "Triangle",
+        "x": 340,
+        "y": 160,
+        "wires": [
+            [
+                "ebe1e3f413c16e6a"
+            ]
+        ]
+    },
+    {
+        "id": "5b97451d566e40cd",
+        "type": "inject",
+        "z": "cdaeea4ad0360d20",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 160,
+        "wires": [
+            [
+                "7331d5d422932272"
+            ]
+        ]
+    },
+    {
+        "id": "b44c80779277a399",
+        "type": "OpcUa-Item",
+        "z": "cdaeea4ad0360d20",
+        "item": "ns=3;i=1004",
+        "datatype": "Double",
+        "value": "",
+        "name": "Sinusoid",
+        "x": 340,
+        "y": 220,
+        "wires": [
+            [
+                "ebe1e3f413c16e6a"
+            ]
+        ]
+    },
+    {
+        "id": "483ac4ad1a525334",
+        "type": "inject",
+        "z": "cdaeea4ad0360d20",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 220,
+        "wires": [
+            [
+                "b44c80779277a399"
+            ]
+        ]
+    },
+    {
+        "id": "c112e55b07aadc7f",
+        "type": "inject",
+        "z": "cdaeea4ad0360d20",
+        "name": "Read multiple items",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "readmultiple",
+        "payload": "",
+        "payloadType": "str",
+        "x": 320,
+        "y": 300,
+        "wires": [
+            [
+                "ebe1e3f413c16e6a"
+            ]
+        ]
+    },
+    {
+        "id": "a03fdf30ac5f34f1",
+        "type": "debug",
+        "z": "cdaeea4ad0360d20",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "msg.topic & msg.payload",
+        "targetType": "jsonata",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "4a85097fffaa539b",
+        "type": "debug",
+        "z": "cdaeea4ad0360d20",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1600,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "8aacabe15f5f1547",
+        "type": "debug",
+        "z": "cdaeea4ad0360d20",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1600,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "0a3c643f2776f613",
+        "type": "file",
+        "z": "cdaeea4ad0360d20",
+        "name": "output to file",
+        "filename": "D:\\Code\\XR\\XR_Project_2\\node-red\\tests\\Nov21.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 1230,
+        "y": 260,
+        "wires": [
+            [
+                "115e00ed4ffe25cf"
+            ]
+        ]
+    },
+    {
+        "id": "3430a00c20602b08",
+        "type": "change",
+        "z": "cdaeea4ad0360d20",
+        "name": "PayloadRandom",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t  \"meta\": topic,\t  \"read\": payload\t}\t",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 850,
+        "y": 340,
+        "wires": [
+            [
+                "7cebeae8ef3b39d9"
+            ]
+        ]
+    },
+    {
+        "id": "dbaacd3cc86aeb9d",
+        "type": "debug",
+        "z": "cdaeea4ad0360d20",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1600,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "115e00ed4ffe25cf",
+        "type": "function",
+        "z": "cdaeea4ad0360d20",
+        "name": "Store latest value",
+        "func": "flow.set(\"lastSignal\", msg.payload);\nreturn msg;  // optional, keeps flow going if needed\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1430,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4b4aac26dc87dd93",
+        "type": "http in",
+        "z": "cdaeea4ad0360d20",
+        "name": "GET blue latest value",
+        "url": "/mes/blue_latest",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 800,
+        "y": 620,
+        "wires": [
+            [
+                "bb80c320867033b1"
+            ]
+        ]
+    },
+    {
+        "id": "bb80c320867033b1",
+        "type": "function",
+        "z": "cdaeea4ad0360d20",
+        "name": "Return latest value",
+        "func": "const data = flow.get(\"blue_lastSignal\");\n\nif (!data) {\n    msg.payload = { error: \"No data available yet\" };\n    msg.statusCode = 503;\n    return msg;\n}\n\nmsg.payload = data;\nmsg.headers = { \"Content-Type\": \"application/json\" };\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1010,
+        "y": 620,
+        "wires": [
+            [
+                "52c0ecb57f7686e6"
+            ]
+        ]
+    },
+    {
+        "id": "52c0ecb57f7686e6",
+        "type": "http response",
+        "z": "cdaeea4ad0360d20",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1210,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "7cebeae8ef3b39d9",
+        "type": "change",
+        "z": "cdaeea4ad0360d20",
+        "name": "ChangeForUnity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t    \"station\": {\t        \"id\": \"SIF-402\",\t        \"status\": \"Running\",\t        \"recipe\": \"StandardMix_v2.3\",\t        \"timestamp\": $now()\t    },\t    \"hoppers\": [\t        {\t            \"id\": \"hopper_blue\",\t            \"color\": \"blue\",\t            \"level\": payload.read.value.value,   /* your real live value */\t            \"hasPellets\": payload.read.value.value > 20,\t            \"status\": payload.read.value.value > 50 ? \"OK\" : \"Low\"\t        }\t    ],\t    \"alarms\": payload.read.value.value < 20 ?\t        [\t            {\t                \"id\": \"alarm_low\",\t                \"severity\": \"warning\",\t                \"message\": \"Hopper level low\",\t                \"timestamp\": $now()\t            }\t        ]\t    : []\t}\t",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1060,
+        "y": 340,
+        "wires": [
+            [
+                "37d007c36878a1c1"
+            ]
+        ]
+    },
+    {
+        "id": "37d007c36878a1c1",
+        "type": "file",
+        "z": "cdaeea4ad0360d20",
+        "name": "output to file",
+        "filename": "D:\\Code\\XR\\XR_Project_2\\node-red\\tests\\Nov21_toUnity.log",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 1230,
+        "y": 340,
+        "wires": [
+            [
+                "ff82f14289f04f59"
+            ]
+        ]
+    },
+    {
+        "id": "ff82f14289f04f59",
+        "type": "function",
+        "z": "cdaeea4ad0360d20",
+        "name": "Store blue latest value",
+        "func": "flow.set(\"blue_lastSignal\", msg.payload);\nreturn msg;  // optional, keeps flow going if needed\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1420,
+        "y": 340,
+        "wires": [
+            [
+                "dbaacd3cc86aeb9d"
+            ]
+        ]
+    },
+    {
+        "id": "dbfceaa1e88d13e4",
+        "type": "change",
+        "z": "cdaeea4ad0360d20",
+        "name": "PayloadTriangle",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t  \"meta\": topic,\t  \"read\": payload\t}\t",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 400,
+        "wires": [
+            [
+                "e6aab4512d3c9447"
+            ]
+        ]
+    },
+    {
+        "id": "e6aab4512d3c9447",
+        "type": "change",
+        "z": "cdaeea4ad0360d20",
+        "name": "ChangeForUnity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t    \"station\": {\t        \"id\": \"SIF-402\",\t        \"status\": \"Running\",\t        \"recipe\": \"StandardMix_v2.3\",\t        \"timestamp\": $now()\t    },\t    \"hoppers\": [\t        {\t            \"id\": \"hopper_yellow\",\t            \"color\": \"yellow\",\t            \"level\": payload.read.value.value,   /* your real live value */\t            \"hasPellets\": payload.read.value.value > 20,\t            \"status\": payload.read.value.value > 50 ? \"OK\" : \"Low\"\t        }\t    ],\t    \"alarms\": payload.read.value.value < 20 ?\t        [\t            {\t                \"id\": \"alarm_low\",\t                \"severity\": \"warning\",\t                \"message\": \"Hopper level low\",\t                \"timestamp\": $now()\t            }\t        ]\t    : []\t}\t",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1040,
+        "y": 400,
+        "wires": [
+            [
+                "87fdd9d31f1bc9c4"
+            ]
+        ]
+    },
+    {
+        "id": "87fdd9d31f1bc9c4",
+        "type": "file",
+        "z": "cdaeea4ad0360d20",
+        "name": "output to file",
+        "filename": "D:\\Code\\XR\\XR_Project_2\\node-red\\tests\\Nov21_toUnity.log",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 1230,
+        "y": 400,
+        "wires": [
+            [
+                "adec9c1cc1502052"
+            ]
+        ]
+    },
+    {
+        "id": "adec9c1cc1502052",
+        "type": "function",
+        "z": "cdaeea4ad0360d20",
+        "name": "Store Yellow latest value",
+        "func": "flow.set(\"yellow_lastSignal\", msg.payload);\nreturn msg;  // optional, keeps flow going if needed\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1430,
+        "y": 400,
+        "wires": [
+            [
+                "4a85097fffaa539b"
+            ]
+        ]
+    },
+    {
+        "id": "dff707186a899df5",
+        "type": "change",
+        "z": "cdaeea4ad0360d20",
+        "name": "PayloadTriangle",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t  \"meta\": topic,\t  \"read\": payload\t}\t",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 460,
+        "wires": [
+            [
+                "769a4389eff23ae0"
+            ]
+        ]
+    },
+    {
+        "id": "769a4389eff23ae0",
+        "type": "change",
+        "z": "cdaeea4ad0360d20",
+        "name": "ChangeForUnity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t    \"station\": {\t        \"id\": \"SIF-402\",\t        \"status\": \"Running\",\t        \"recipe\": \"StandardMix_v2.3\",\t        \"timestamp\": $now()\t    },\t    \"hoppers\": [\t        {\t            \"id\": \"hopper_red\",\t            \"color\": \"red\",\t            \"level\": payload.read.value.value,   /* your real live value */\t            \"hasPellets\": payload.read.value.value > 20,\t            \"status\": payload.read.value.value > 50 ? \"OK\" : \"Low\"\t        }\t    ],\t    \"alarms\": payload.read.value.value < 20 ?\t        [\t            {\t                \"id\": \"alarm_low\",\t                \"severity\": \"warning\",\t                \"message\": \"Hopper level low\",\t                \"timestamp\": $now()\t            }\t        ]\t    : []\t}\t",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1040,
+        "y": 460,
+        "wires": [
+            [
+                "66bf73165678d6fa"
+            ]
+        ]
+    },
+    {
+        "id": "66bf73165678d6fa",
+        "type": "file",
+        "z": "cdaeea4ad0360d20",
+        "name": "output to file",
+        "filename": "D:\\Code\\XR\\XR_Project_2\\node-red\\tests\\Nov21_toUnity.log",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 1230,
+        "y": 460,
+        "wires": [
+            [
+                "98c138e4a9b5bee1"
+            ]
+        ]
+    },
+    {
+        "id": "98c138e4a9b5bee1",
+        "type": "function",
+        "z": "cdaeea4ad0360d20",
+        "name": "Store Red latest value",
+        "func": "flow.set(\"red_lastSignal\", msg.payload);\nreturn msg;  // optional, keeps flow going if needed\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1420,
+        "y": 460,
+        "wires": [
+            [
+                "8aacabe15f5f1547"
+            ]
+        ]
+    },
+    {
+        "id": "dc1b2615a111f9ed",
+        "type": "http in",
+        "z": "cdaeea4ad0360d20",
+        "name": "GET yellow latest value",
+        "url": "/mes/yellow_latest",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 800,
+        "y": 700,
+        "wires": [
+            [
+                "b7f216bbcfe3cbb0"
+            ]
+        ]
+    },
+    {
+        "id": "b7f216bbcfe3cbb0",
+        "type": "function",
+        "z": "cdaeea4ad0360d20",
+        "name": "Return latest value",
+        "func": "const data = flow.get(\"yellow_lastSignal\");\n\nif (!data) {\n    msg.payload = { error: \"No data available yet\" };\n    msg.statusCode = 503;\n    return msg;\n}\n\nmsg.payload = data;\nmsg.headers = { \"Content-Type\": \"application/json\" };\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1010,
+        "y": 700,
+        "wires": [
+            [
+                "37ad48827bc15374"
+            ]
+        ]
+    },
+    {
+        "id": "37ad48827bc15374",
+        "type": "http response",
+        "z": "cdaeea4ad0360d20",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1210,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "93a985db05c55c0e",
+        "type": "http in",
+        "z": "cdaeea4ad0360d20",
+        "name": "GET red latest value",
+        "url": "/mes/red_latest",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 790,
+        "y": 780,
+        "wires": [
+            [
+                "c602e518218ced37"
+            ]
+        ]
+    },
+    {
+        "id": "c602e518218ced37",
+        "type": "function",
+        "z": "cdaeea4ad0360d20",
+        "name": "Return latest value",
+        "func": "const data = flow.get(\"red_lastSignal\");\n\nif (!data) {\n    msg.payload = { error: \"No data available yet\" };\n    msg.statusCode = 503;\n    return msg;\n}\n\nmsg.payload = data;\nmsg.headers = { \"Content-Type\": \"application/json\" };\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1010,
+        "y": 780,
+        "wires": [
+            [
+                "153ee211087207b3"
+            ]
+        ]
+    },
+    {
+        "id": "153ee211087207b3",
+        "type": "http response",
+        "z": "cdaeea4ad0360d20",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1210,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "7218f5076422f2a1",
+        "type": "OpcUa-Item",
+        "z": "f1daa3e7d6f0c6a3",
+        "item": "ns=6;s=::AsGlobalPV:MESINV_SIF405_usiFeeder1Cap",
+        "datatype": "Byte",
+        "value": "",
+        "name": "Feeder1Cap",
+        "x": 260,
+        "y": 100,
+        "wires": [
+            [
+                "a1bc5d77b9d3fce7"
+            ]
+        ]
+    },
+    {
+        "id": "e28aef7f9afdbd23",
+        "type": "OpcUa-Item",
+        "z": "f1daa3e7d6f0c6a3",
+        "item": "ns=6;s=::AsGlobalPV:MESINV_SIF405_usiFeeder1Type",
+        "datatype": "Byte",
+        "value": "",
+        "name": "Feeder1Type",
+        "x": 260,
+        "y": 160,
+        "wires": [
+            [
+                "a1bc5d77b9d3fce7"
+            ]
+        ]
+    },
+    {
+        "id": "7a18e5c76e7e2d15",
+        "type": "OpcUa-Item",
+        "z": "f1daa3e7d6f0c6a3",
+        "item": "ns=6;s=::AsGlobalPV:MESINV_SIF405_usiFeeder2Cap",
+        "datatype": "Byte",
+        "value": "",
+        "name": "Feeder2Cap",
+        "x": 260,
+        "y": 220,
+        "wires": [
+            [
+                "a1bc5d77b9d3fce7"
+            ]
+        ]
+    },
+    {
+        "id": "fa6a220c6fad986b",
+        "type": "OpcUa-Item",
+        "z": "f1daa3e7d6f0c6a3",
+        "item": "ns=6;s=::AsGlobalPV:MESINV_SIF405_usiFeeder2Type",
+        "datatype": "Byte",
+        "value": "",
+        "name": "Feeder2Type",
+        "x": 260,
+        "y": 280,
+        "wires": [
+            [
+                "a1bc5d77b9d3fce7"
+            ]
+        ]
+    },
+    {
+        "id": "a1bc5d77b9d3fce7",
+        "type": "OpcUa-Client",
+        "z": "f1daa3e7d6f0c6a3",
+        "endpoint": "1e7b05e31dd949f3",
+        "action": "readmultiple",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": "",
+        "maxMessageSize": "",
+        "receiveBufferSize": "",
+        "sendBufferSize": "",
+        "setstatusandtime": false,
+        "keepsessionalive": false,
+        "name": "",
+        "applicationName": "",
+        "applicationUri": "",
+        "x": 560,
+        "y": 180,
+        "wires": [
+            [
+                "bc59a1a3f902709c",
+                "b8c8a64abd1e3446"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "bc59a1a3f902709c",
+        "type": "function",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Store PLC values",
+        "func": "const key = msg.topic;\nconst val = msg.payload.value;\nfunction store(name, value) {\n    flow.set(name, {value: value, simulated: false});\n}\nif (key.includes(\"Feeder1Cap\")) store(\"feeder1_cap\", val);\nif (key.includes(\"Feeder1Type\")) store(\"feeder1_type\", val);\nif (key.includes(\"Feeder2Cap\")) store(\"feeder2_cap\", val);\nif (key.includes(\"Feeder2Type\")) store(\"feeder2_type\", val);\nreturn null;",
+        "outputs": 1,
+        "x": 820,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "801c4de4d50f9d3e",
+        "type": "inject",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Feeder1 +1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 240,
+        "y": 360,
+        "wires": [
+            [
+                "430376a1344b07d8"
+            ]
+        ]
+    },
+    {
+        "id": "430376a1344b07d8",
+        "type": "function",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Sim Feeder1 +1",
+        "func": "let f = flow.get('feeder1_cap') || {value:0};\nf.value = Math.min(20, f.value + 1);\nflow.set('feeder1_cap', {value:f.value, simulated:true});\nreturn feeder1_cap;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 360,
+        "wires": [
+            [
+                "f0e8986bc95d8a2a"
+            ]
+        ]
+    },
+    {
+        "id": "307dd75b44d9ac13",
+        "type": "inject",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Feeder1 -1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 240,
+        "y": 410,
+        "wires": [
+            [
+                "d3446574b20d8bde"
+            ]
+        ]
+    },
+    {
+        "id": "d3446574b20d8bde",
+        "type": "function",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Sim Feeder1 -1",
+        "func": "let f = flow.get('feeder1_cap') || {value:0};\nf.value = Math.max(0, f.value - 1);\nflow.set('feeder1_cap', {value:f.value, simulated:true});",
+        "outputs": 1,
+        "x": 540,
+        "y": 410,
+        "wires": [
+            [
+                "f67e426cc8c8ee75"
+            ]
+        ]
+    },
+    {
+        "id": "ab722c522fb7b4c3",
+        "type": "inject",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Feeder2 +1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 240,
+        "y": 660,
+        "wires": [
+            [
+                "e2d9763873efbdd8"
+            ]
+        ]
+    },
+    {
+        "id": "e2d9763873efbdd8",
+        "type": "function",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Sim Feeder2 +1",
+        "func": "let f = flow.get('feeder2_cap') || {value:0};\nf.value = Math.min(20, f.value + 1);\nflow.set('feeder2_cap', {value:f.value, simulated:true});",
+        "outputs": 1,
+        "x": 540,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8bbbe1b63f6ac824",
+        "type": "inject",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Feeder2 -1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 240,
+        "y": 710,
+        "wires": [
+            [
+                "8d56c1470c6e3bd7"
+            ]
+        ]
+    },
+    {
+        "id": "8d56c1470c6e3bd7",
+        "type": "function",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Sim Feeder2 -1",
+        "func": "let f = flow.get('feeder2_cap') || {value:0};\nf.value = Math.max(0, f.value - 1);\nflow.set('feeder2_cap', {value:f.value, simulated:true});",
+        "outputs": 1,
+        "x": 540,
+        "y": 710,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2e069e7b9098fafb",
+        "type": "function",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Validate Feeder1 Type",
+        "func": "let v = Number(msg.payload);\nif (v < 0 || v > 2) return null;\nflow.set('feeder1_type', {value:v, simulated:true});",
+        "outputs": 1,
+        "x": 560,
+        "y": 520,
+        "wires": [
+            [
+                "610b7cc669664d35"
+            ]
+        ]
+    },
+    {
+        "id": "561b183743d2f787",
+        "type": "function",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Validate Feeder2 Type",
+        "func": "let v = Number(msg.payload);\nif (v < 0 || v > 2) return null;\nflow.set('feeder2_type', {value:v, simulated:true});",
+        "outputs": 1,
+        "x": 560,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ce382c9bfc4286c8",
+        "type": "http in",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "",
+        "url": "/feeder/1",
+        "method": "get",
+        "upload": false,
+        "x": 800,
+        "y": 720,
+        "wires": [
+            [
+                "1ddb1798a1426eb0"
+            ]
+        ]
+    },
+    {
+        "id": "1ddb1798a1426eb0",
+        "type": "function",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Build Feeder1 JSON",
+        "func": "const cap = flow.get('feeder1_cap');\nconst typ = flow.get('feeder1_type');\nif (!cap || !typ) {\n    msg.payload = {error:\"Values not available\"};\n    msg.statusCode = 503;\n    return msg;\n}\nmsg.payload = {\n    feeder:1,\n    caps:cap.value,\n    type:typ.value,\n    simulated:cap.simulated||typ.simulated\n};\nreturn msg;",
+        "outputs": 1,
+        "x": 1060,
+        "y": 720,
+        "wires": [
+            [
+                "375977e996226ce8"
+            ]
+        ]
+    },
+    {
+        "id": "375977e996226ce8",
+        "type": "http response",
+        "z": "f1daa3e7d6f0c6a3",
+        "x": 1290,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "48ea726ce136a52c",
+        "type": "http in",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "",
+        "url": "/feeder/2",
+        "method": "get",
+        "upload": false,
+        "x": 800,
+        "y": 780,
+        "wires": [
+            [
+                "e1905b6cb3656d04"
+            ]
+        ]
+    },
+    {
+        "id": "e1905b6cb3656d04",
+        "type": "function",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Build Feeder2 JSON",
+        "func": "const cap = flow.get('feeder2_cap');\nconst typ = flow.get('feeder2_type');\nif (!cap || !typ) {\n    msg.payload = {error:\"Values not available\"};\n    msg.statusCode = 503;\n    return msg;\n}\nmsg.payload = {\n    feeder:2,\n    caps:cap.value,\n    type:typ.value,\n    simulated:cap.simulated||typ.simulated\n};\nreturn msg;",
+        "outputs": 1,
+        "x": 1060,
+        "y": 780,
+        "wires": [
+            [
+                "efa6b30fd45a7d51"
+            ]
+        ]
+    },
+    {
+        "id": "efa6b30fd45a7d51",
+        "type": "http response",
+        "z": "f1daa3e7d6f0c6a3",
+        "x": 1290,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "f0e8986bc95d8a2a",
+        "type": "debug",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "f67e426cc8c8ee75",
+        "type": "debug",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "debug 10",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "610b7cc669664d35",
+        "type": "debug",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "inj_f1_type_0",
+        "type": "inject",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Set Feeder1 Type = 0",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 240,
+        "y": 480,
+        "wires": [
+            [
+                "2e069e7b9098fafb"
+            ]
+        ]
+    },
+    {
+        "id": "inj_f1_type_1",
+        "type": "inject",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Set Feeder1 Type = 1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 240,
+        "y": 520,
+        "wires": [
+            [
+                "2e069e7b9098fafb"
+            ]
+        ]
+    },
+    {
+        "id": "inj_f1_type_2",
+        "type": "inject",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Set Feeder1 Type = 2",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "2",
+        "payloadType": "num",
+        "x": 240,
+        "y": 560,
+        "wires": [
+            [
+                "2e069e7b9098fafb"
+            ]
+        ]
+    },
+    {
+        "id": "e0adcdfc26782731",
+        "type": "inject",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Set Feeder1 Type = 0",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 240,
+        "y": 800,
+        "wires": [
+            [
+                "561b183743d2f787"
+            ]
+        ]
+    },
+    {
+        "id": "2b4088aeff08fe31",
+        "type": "inject",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Set Feeder1 Type = 1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 240,
+        "y": 840,
+        "wires": [
+            [
+                "561b183743d2f787"
+            ]
+        ]
+    },
+    {
+        "id": "7383f42c396fa007",
+        "type": "inject",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "Set Feeder1 Type = 2",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "2",
+        "payloadType": "num",
+        "x": 240,
+        "y": 880,
+        "wires": [
+            [
+                "561b183743d2f787"
+            ]
+        ]
+    },
+    {
+        "id": "b8c8a64abd1e3446",
+        "type": "debug",
+        "z": "f1daa3e7d6f0c6a3",
+        "name": "debug 12",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "sub_trigger",
+        "type": "inject",
+        "z": "tab_feeders",
+        "d": true,
+        "name": "Start subscription",
+        "props": [
+            {
+                "p": "action",
+                "v": "subscribe",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "x": 330,
+        "y": 40,
+        "wires": [
+            [
+                "opcua_client"
+            ]
+        ]
+    },
+    {
+        "id": "poll_trigger",
+        "type": "inject",
+        "z": "tab_feeders",
+        "d": true,
+        "name": "Fallback polling every 5 sec",
+        "props": [
+            {
+                "p": "action",
+                "v": "read",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "0",
+        "topic": "",
+        "x": 340,
+        "y": 100,
+        "wires": [
+            [
+                "opcua_client"
+            ]
+        ]
+    },
+    {
+        "id": "item_f1_cap",
+        "type": "OpcUa-Item",
+        "z": "tab_feeders",
+        "item": "ns=6;s=::AsGlobalPV:MESINV_SIF405_usiFeeder1Cap",
+        "datatype": "Byte",
+        "value": "",
+        "name": "Feeder1Cap",
+        "x": 300,
+        "y": 220,
+        "wires": [
+            [
+                "opcua_client"
+            ]
+        ]
+    },
+    {
+        "id": "item_f1_type",
+        "type": "OpcUa-Item",
+        "z": "tab_feeders",
+        "item": "ns=6;s=::AsGlobalPV:MESINV_SIF405_usiFeeder1Type",
+        "datatype": "Byte",
+        "value": "",
+        "name": "Feeder1Type",
+        "x": 300,
+        "y": 260,
+        "wires": [
+            [
+                "opcua_client"
+            ]
+        ]
+    },
+    {
+        "id": "item_f2_cap",
+        "type": "OpcUa-Item",
+        "z": "tab_feeders",
+        "item": "ns=6;s=::AsGlobalPV:MESINV_SIF405_usiFeeder2Cap",
+        "datatype": "Byte",
+        "value": "",
+        "name": "Feeder2Cap",
+        "x": 300,
+        "y": 300,
+        "wires": [
+            [
+                "opcua_client"
+            ]
+        ]
+    },
+    {
+        "id": "item_f2_type",
+        "type": "OpcUa-Item",
+        "z": "tab_feeders",
+        "item": "ns=6;s=::AsGlobalPV:MESINV_SIF405_usiFeeder2Type",
+        "datatype": "Byte",
+        "value": "",
+        "name": "Feeder2Type",
+        "x": 300,
+        "y": 340,
+        "wires": [
+            [
+                "opcua_client"
+            ]
+        ]
+    },
+    {
+        "id": "opcua_client",
+        "type": "OpcUa-Client",
+        "z": "tab_feeders",
+        "endpoint": "opcua_endpoint",
+        "action": "readmultiple",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 0,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": "",
+        "maxMessageSize": "",
+        "receiveBufferSize": "",
+        "sendBufferSize": "",
+        "setstatusandtime": true,
+        "keepsessionalive": false,
+        "name": "Hybrid OPC UA Client",
+        "applicationName": "",
+        "applicationUri": "",
+        "x": 620,
+        "y": 260,
+        "wires": [
+            [
+                "store_plc_values",
+                "dbg_plc_raw"
+            ],
+            [],
+            [
+                "dbg_plc_errors"
+            ]
+        ]
+    },
+    {
+        "id": "store_plc_values",
+        "type": "function",
+        "z": "tab_feeders",
+        "name": "Store PLC values (real)",
+        "func": "// Normalize key from browseName\nlet keyObj = msg.topic || {};\nlet key = \"\";\n\nif (typeof keyObj === \"object\") {\n    key = keyObj.browseName || keyObj.nodeId || JSON.stringify(keyObj);\n} else {\n    key = String(keyObj);\n}\n\nconst val = msg.payload;\n\n// Ignore weird/unexpected messages\nif (val === undefined || val === null) return null;\n\n// Helper: store real PLC values unless simulation is active\nfunction storeReal(name, value) {\n    const simFlag = flow.get(name + \"_sim\");\n    if (simFlag && simFlag.active) return;     // simulation active → ignore PLC\n    flow.set(name, { value: value, simulated: false });\n}\n\n// Route based on browseName\nif (key === \"Feeder1Cap\") storeReal(\"feeder1_cap\", val);\nif (key === \"Feeder1Type\") storeReal(\"feeder1_type\", val);\nif (key === \"Feeder2Cap\") storeReal(\"feeder2_cap\", val);\nif (key === \"Feeder2Type\") storeReal(\"feeder2_type\", val);\n\nreturn null;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dbg_plc_raw",
+        "type": "debug",
+        "z": "tab_feeders",
+        "name": "PLC RAW",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "dbg_plc_errors",
+        "type": "debug",
+        "z": "tab_feeders",
+        "name": "PLC ERRORS",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "sim_f1_cap_inc",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "F1 +1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 150,
+        "y": 540,
+        "wires": [
+            [
+                "sim_f1_cap_fn"
+            ]
+        ]
+    },
+    {
+        "id": "sim_f1_cap_fn",
+        "type": "function",
+        "z": "tab_feeders",
+        "name": "Sim Feeder1 Cap +1",
+        "func": "let f = flow.get(\"feeder1_cap\") || { value: 0 };\nf.value = Math.min(20, f.value + 1);\nflow.set(\"feeder1_cap\", { value: f.value, simulated: true });\nflow.set(\"feeder1_cap_sim\", { active: true });\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "sim_f1_type_0",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "F1 Type 0",
+        "props": [
+            {
+                "p": "payload",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "x": 170,
+        "y": 640,
+        "wires": [
+            [
+                "sim_f1_type_fn"
+            ]
+        ]
+    },
+    {
+        "id": "sim_f1_type_fn",
+        "type": "function",
+        "z": "tab_feeders",
+        "name": "Sim Feeder1 Type",
+        "func": "let v = Number(msg.payload);\nif (v < 0 || v > 2) return null;\n\nflow.set(\"feeder1_type\", { value: v, simulated: true });\nflow.set(\"feeder1_type_sim\", { active: true });\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "api_f1",
+        "type": "http in",
+        "z": "tab_feeders",
+        "name": "",
+        "url": "/feeder/1",
+        "method": "get",
+        "upload": false,
+        "x": 740,
+        "y": 600,
+        "wires": [
+            [
+                "api_f1_fn"
+            ]
+        ]
+    },
+    {
+        "id": "api_f1_fn",
+        "type": "function",
+        "z": "tab_feeders",
+        "name": "Build Feeder 1 JSON",
+        "func": "const cap = flow.get('feeder1_cap');\nconst typ = flow.get('feeder1_type');\nmsg.payload = {\n  feeder: 1,\n  caps: cap ? cap.value : null,\n  type: typ ? typ.value : null,\n  simulated: (flow.get('feeder1_cap_sim')?.active || flow.get('feeder1_type_sim')?.active) || false\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1010,
+        "y": 600,
+        "wires": [
+            [
+                "api_f1_resp"
+            ]
+        ]
+    },
+    {
+        "id": "api_f1_resp",
+        "type": "http response",
+        "z": "tab_feeders",
+        "statusCode": "",
+        "headers": {},
+        "x": 1240,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "init_feeder_values",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "Initialize Feeder Values (startup)",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.5,
+        "topic": "",
+        "payloadType": "date",
+        "x": 710,
+        "y": 120,
+        "wires": [
+            [
+                "set_initial_values_fn"
+            ]
+        ]
+    },
+    {
+        "id": "set_initial_values_fn",
+        "type": "function",
+        "z": "tab_feeders",
+        "name": "Set default simulation values",
+        "func": "flow.set('feeder1_cap',   {value:0, simulated:true});\nflow.set('feeder1_type',  {value:0, simulated:true});\nflow.set('feeder2_cap',   {value:0, simulated:true});\nflow.set('feeder2_type',  {value:0, simulated:true});\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 980,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e4eae056f964a7c7",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "F1 -1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 140,
+        "y": 580,
+        "wires": [
+            [
+                "0637bac89e80f646"
+            ]
+        ]
+    },
+    {
+        "id": "0637bac89e80f646",
+        "type": "function",
+        "z": "tab_feeders",
+        "name": "Sim Feeder1 Cap -1",
+        "func": "let f = flow.get(\"feeder1_cap\") || { value: 0 };\nf.value = Math.max(0, f.value - 1);\nflow.set(\"feeder1_cap\", { value: f.value, simulated: true });\nflow.set(\"feeder1_cap_sim\", { active: true });\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e5dab1a21ecdd2f3",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "F1 Type 1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 170,
+        "y": 680,
+        "wires": [
+            [
+                "sim_f1_type_fn"
+            ]
+        ]
+    },
+    {
+        "id": "84cef97b2b5e3e5d",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "F1 Type 2",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "2",
+        "payloadType": "num",
+        "x": 170,
+        "y": 720,
+        "wires": [
+            [
+                "sim_f1_type_fn"
+            ]
+        ]
+    },
+    {
+        "id": "http_in_allfeeders",
+        "type": "http in",
+        "z": "tab_feeders",
+        "name": "GET all feeders",
+        "url": "/feeders",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 770,
+        "y": 680,
+        "wires": [
+            [
+                "build_allfeeders"
+            ]
+        ]
+    },
+    {
+        "id": "build_allfeeders",
+        "type": "function",
+        "z": "tab_feeders",
+        "name": "Build JSON for both feeders",
+        "func": "const f1c = flow.get('feeder1_cap');\nconst f1t = flow.get('feeder1_type');\nconst f2c = flow.get('feeder2_cap');\nconst f2t = flow.get('feeder2_type');\n\n// fallback defaults if missing\nfunction safe(val) {\n    return val ? val : {value:0, simulated:true};\n}\n\nconst feeder1 = {\n    feeder: 1,\n    caps: safe(f1c).value,\n    type: safe(f1t).value,\n    simulated: safe(f1c).simulated || safe(f1t).simulated\n};\n\nconst feeder2 = {\n    feeder: 2,\n    caps: safe(f2c).value,\n    type: safe(f2t).value,\n    simulated: safe(f2c).simulated || safe(f2t).simulated\n};\n\nmsg.payload = {\n    feeders: [ feeder1, feeder2 ]\n};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1030,
+        "y": 680,
+        "wires": [
+            [
+                "http_response_allfeeders"
+            ]
+        ]
+    },
+    {
+        "id": "http_response_allfeeders",
+        "type": "http response",
+        "z": "tab_feeders",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1260,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "ea66828c9355dbff",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "F2 +1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 160,
+        "y": 820,
+        "wires": [
+            [
+                "ff3f311498b348c2"
+            ]
+        ]
+    },
+    {
+        "id": "ff3f311498b348c2",
+        "type": "function",
+        "z": "tab_feeders",
+        "name": "Sim Feeder2 Cap +1",
+        "func": "let f = flow.get('feeder2_cap') || { value: 0 };\nf.value = Math.min(20, f.value + 1);\nflow.set('feeder2_cap', f);\nflow.set('feeder2_cap_sim', { active: true });\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f43b4217558896c0",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "F2 Type 0",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 180,
+        "y": 920,
+        "wires": [
+            [
+                "324afdf824ad01b0"
+            ]
+        ]
+    },
+    {
+        "id": "324afdf824ad01b0",
+        "type": "function",
+        "z": "tab_feeders",
+        "name": "Sim Feeder2 Type",
+        "func": "const v = Number(msg.payload);\nif (v < 0 || v > 2) return null;\nflow.set('feeder2_type', { value: v });\nflow.set('feeder2_type_sim', { active: true });\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "288c3cdb4bb31989",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "F2 -1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 150,
+        "y": 860,
+        "wires": [
+            [
+                "49dbacc6ac143bbc"
+            ]
+        ]
+    },
+    {
+        "id": "49dbacc6ac143bbc",
+        "type": "function",
+        "z": "tab_feeders",
+        "name": "Sim Feeder2 Cap -1",
+        "func": "let f = flow.get('feeder2_cap') || { value: 0 };\nf.value = Math.max(0, f.value - 1);\nflow.set('feeder2_cap', f);\nflow.set('feeder2_cap_sim', { active: true });\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "99ec6a8221cc0163",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "F2 Type 1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 180,
+        "y": 960,
+        "wires": [
+            [
+                "324afdf824ad01b0"
+            ]
+        ]
+    },
+    {
+        "id": "939192d542bb5ed7",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "F2 Type 2",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "2",
+        "payloadType": "num",
+        "x": 180,
+        "y": 1000,
+        "wires": [
+            [
+                "324afdf824ad01b0"
+            ]
+        ]
+    },
+    {
+        "id": "readmulti_inject",
+        "type": "inject",
+        "z": "tab_feeders",
+        "d": true,
+        "name": "Read 4 Feeder Signals",
+        "props": [
+            {
+                "p": "topic",
+                "v": "[\"ns=6;s=::AsGlobalPV:MESINV_SIF405_usiFeeder1Cap\", \"ns=6;s=::AsGlobalPV:MESINV_SIF405_usiFeeder1Type\", \"ns=6;s=::AsGlobalPV:MESINV_SIF405_usiFeeder2Cap\", \"ns=6;s=::AsGlobalPV:MESINV_SIF405_usiFeeder2Type\"]",
+                "vt": "json"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "x": 330,
+        "y": 160,
+        "wires": [
+            [
+                "opcua_client"
+            ]
+        ]
+    },
+    {
+        "id": "c9b5f075a091a348",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 220,
+        "wires": [
+            [
+                "item_f1_cap"
+            ]
+        ]
+    },
+    {
+        "id": "4a565fca1e79a5f8",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 260,
+        "wires": [
+            [
+                "item_f1_type"
+            ]
+        ]
+    },
+    {
+        "id": "175b25a0a85e8c5a",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 300,
+        "wires": [
+            [
+                "item_f2_cap"
+            ]
+        ]
+    },
+    {
+        "id": "dd65c9e32fc65e08",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 340,
+        "wires": [
+            [
+                "item_f2_type"
+            ]
+        ]
+    },
+    {
+        "id": "02f70fefc1ebdc56",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "Read multiple items",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "readmultiple",
+        "payload": "",
+        "payloadType": "str",
+        "x": 320,
+        "y": 400,
+        "wires": [
+            [
+                "opcua_client"
+            ]
+        ]
+    },
+    {
+        "id": "e217cc607f10a850",
+        "type": "function",
+        "z": "tab_feeders",
+        "name": "function 3",
+        "func": "return {\n    feeder1_cap: flow.get(\"feeder1_cap\"),\n    feeder1_cap_sim: flow.get(\"feeder1_cap_sim\"),\n    feeder1_type: flow.get(\"feeder1_type\"),\n    feeder1_type_sim: flow.get(\"feeder1_type_sim\"),\n    feeder2_cap: flow.get(\"feeder2_cap\"),\n    feeder2_cap_sim: flow.get(\"feeder2_cap_sim\"),\n    feeder2_type: flow.get(\"feeder2_type\"),\n    feeder2_type_sim: flow.get(\"feeder2_type_sim\")\n};\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 440,
+        "wires": [
+            [
+                "e7a852c9d5fe645b"
+            ]
+        ]
+    },
+    {
+        "id": "e7a852c9d5fe645b",
+        "type": "debug",
+        "z": "tab_feeders",
+        "name": "debug 13",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1060,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "8170066c80019be1",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 700,
+        "y": 440,
+        "wires": [
+            [
+                "e217cc607f10a850"
+            ]
+        ]
+    },
+    {
+        "id": "inj_disable_f1_sim",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "Disable simulation Feeder1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 690,
+        "y": 20,
+        "wires": [
+            [
+                "fn_disable_f1_sim"
+            ]
+        ]
+    },
+    {
+        "id": "fn_disable_f1_sim",
+        "type": "function",
+        "z": "tab_feeders",
+        "name": "Clear Feeder1 simulation flags",
+        "func": "flow.set(\"feeder1_cap_sim\",  { active: false });\nflow.set(\"feeder1_type_sim\", { active: false });\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 20,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b9aa1e625d1689aa",
+        "type": "inject",
+        "z": "tab_feeders",
+        "name": "Disable simulation Feeder2",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 690,
+        "y": 60,
+        "wires": [
+            [
+                "470ca004398659b0"
+            ]
+        ]
+    },
+    {
+        "id": "470ca004398659b0",
+        "type": "function",
+        "z": "tab_feeders",
+        "name": "Clear Feeder2 simulation flags",
+        "func": "flow.set(\"feeder2_cap_sim\",  { active: false });\nflow.set(\"feeder2_type_sim\", { active: false });\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "96e35eba912d521b",
+        "type": "OpcUa-Item",
+        "z": "508f8d5d8e511b61",
+        "item": "ns=6;s=::AsGlobalPV:MESPAOEE_udiRunningTime",
+        "datatype": "UInt32",
+        "value": "",
+        "name": "MESPAOEE_udiRunningTime",
+        "x": 410,
+        "y": 100,
+        "wires": [
+            [
+                "c911f26ba0f19222"
+            ]
+        ]
+    },
+    {
+        "id": "78ace1e1c18c65b7",
+        "type": "inject",
+        "z": "508f8d5d8e511b61",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 100,
+        "wires": [
+            [
+                "96e35eba912d521b"
+            ]
+        ]
+    },
+    {
+        "id": "d349bb016dfa616e",
+        "type": "OpcUa-Item",
+        "z": "508f8d5d8e511b61",
+        "item": "ns=6;s=::AsGlobalPV:MESPAOEE_bAlarm",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "MESPAOEE_bAlarm",
+        "x": 380,
+        "y": 160,
+        "wires": [
+            [
+                "c911f26ba0f19222"
+            ]
+        ]
+    },
+    {
+        "id": "870cd76d414cf089",
+        "type": "inject",
+        "z": "508f8d5d8e511b61",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 160,
+        "wires": [
+            [
+                "d349bb016dfa616e"
+            ]
+        ]
+    },
+    {
+        "id": "2b2b9313c2046257",
+        "type": "OpcUa-Item",
+        "z": "508f8d5d8e511b61",
+        "item": "ns=6;s=::AsGlobalPV:MESPAEA_rCurrent",
+        "datatype": "Float",
+        "value": "",
+        "name": "MESPAEA_rCurrent",
+        "x": 380,
+        "y": 220,
+        "wires": [
+            [
+                "c911f26ba0f19222"
+            ]
+        ]
+    },
+    {
+        "id": "dc8d5013db9ac961",
+        "type": "inject",
+        "z": "508f8d5d8e511b61",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 220,
+        "wires": [
+            [
+                "2b2b9313c2046257"
+            ]
+        ]
+    },
+    {
+        "id": "6692e813eefba713",
+        "type": "inject",
+        "z": "508f8d5d8e511b61",
+        "name": "Read multiple items",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "readmultiple",
+        "payload": "",
+        "payloadType": "str",
+        "x": 340,
+        "y": 340,
+        "wires": [
+            [
+                "c911f26ba0f19222"
+            ]
+        ]
+    },
+    {
+        "id": "c911f26ba0f19222",
+        "type": "OpcUa-Client",
+        "z": "508f8d5d8e511b61",
+        "endpoint": "5a1ac14b.4d0f38",
+        "action": "readmultiple",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "setstatusandtime": false,
+        "keepsessionalive": false,
+        "name": "",
+        "applicationName": "",
+        "applicationUri": "",
+        "x": 640,
+        "y": 180,
+        "wires": [
+            [
+                "ed302d3787f946d8"
+            ],
+            [],
+            [
+                "bd6f68a8cf7d89d5"
+            ]
+        ]
+    },
+    {
+        "id": "bd6f68a8cf7d89d5",
+        "type": "function",
+        "z": "508f8d5d8e511b61",
+        "name": "MergePayload",
+        "func": "let msgs = []\nfor (let i = 0; i < msg.payload.length; i++) {\n    msgs.push({ topic: msg.topic[i], payload: msg.payload[i] })\n}\nreturn msgs;",
+        "outputs": 3,
+        "timeout": 0,
+        "noerr": 0,
+        "x": 620,
+        "y": 520,
+        "wires": [
+            [],
+            [],
+            [
+                "583101f3a1ad3908"
+            ]
+        ]
+    },
+    {
+        "id": "583101f3a1ad3908",
+        "type": "change",
+        "z": "508f8d5d8e511b61",
+        "name": "Payload wrapper",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{ \"meta\": topic, \"read\": payload }",
+                "tot": "jsonata"
+            }
+        ],
+        "x": 870,
+        "y": 520,
+        "wires": [
+            [
+                "b67c544f5f3000ff"
+            ]
+        ]
+    },
+    {
+        "id": "b67c544f5f3000ff",
+        "type": "change",
+        "z": "508f8d5d8e511b61",
+        "name": "Create_SIF402_Message",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t   \"station\": {\t       \"id\": \"SIF-402\",\t       \"status\": (\t           meta = \"MESPAOEE_bAlarm\" and read.value.value = true\t       ) ? \"Alarm\" : \"Running\",\t       \"recipe\": \"StandardMix_v2.3\",\t       \"timestamp\": $now()    \t   },\t   \"hoppers\": [\t       {\t           \"id\": \"hopper_blue\",\t           \"color\": \"blue\",\t           \"level\": $floor(read.value.value % 100),\t           \"hasPellets\": ($floor(read.value.value % 100) > 10),\t           \"status\": ($floor(read.value.value % 100) > 50) ? \"OK\" : \"Low\"        \t       }    \t   ],\t   \"alarms\": [\t       {\t           \"id\": \"station_alarm\",\t           \"severity\": (\t               meta = \"MESPAOEE_bAlarm\" and read.value.value = true\t           ) ? \"warning\" : \"info\",\t           \"message\": (\t               meta = \"MESPAOEE_bAlarm\" and read.value.value = true\t           )                ? \"Station is in Alarm !\"                : \"Station has none alarms\",\t           \"timestamp\": $now()        \t       }    \t   ]\t}",
+                "tot": "jsonata"
+            }
+        ],
+        "x": 1130,
+        "y": 520,
+        "wires": [
+            [
+                "6a9e8114b1f183b0"
+            ]
+        ]
+    },
+    {
+        "id": "6a9e8114b1f183b0",
+        "type": "file",
+        "z": "508f8d5d8e511b61",
+        "name": "Log output",
+        "filename": "D:\\\\Code\\\\XR\\\\XR_Project_2\\\\node-red\\\\tests\\\\Dic04_PLCtoUnity.log",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 1330,
+        "y": 520,
+        "wires": [
+            [
+                "2a0de4199b600b78"
+            ]
+        ]
+    },
+    {
+        "id": "2a0de4199b600b78",
+        "type": "function",
+        "z": "508f8d5d8e511b61",
+        "name": "Store last value",
+        "func": "flow.set(\"402_lastSignal\", msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1520,
+        "y": 520,
+        "wires": [
+            [
+                "c1bc72a3eb5a903a"
+            ]
+        ]
+    },
+    {
+        "id": "4aaf7b54a2b7a4fe",
+        "type": "http in",
+        "z": "508f8d5d8e511b61",
+        "name": "GET SIF402 latest values",
+        "url": "/mes/402_latest",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 770,
+        "y": 760,
+        "wires": [
+            [
+                "20ea71fb362d290c"
+            ]
+        ]
+    },
+    {
+        "id": "20ea71fb362d290c",
+        "type": "function",
+        "z": "508f8d5d8e511b61",
+        "name": "Return latest value",
+        "func": "const data = flow.get(\"402_lastSignal\");\nif (!data) { msg.payload = { error: \"No data available yet\" }; msg.statusCode = 503; return msg; }\nmsg.payload = data;\nmsg.headers = { \"Content-Type\": \"application/json\" };\nreturn msg;",
+        "outputs": 1,
+        "x": 1010,
+        "y": 760,
+        "wires": [
+            [
+                "772390cc5c1cc58b"
+            ]
+        ]
+    },
+    {
+        "id": "772390cc5c1cc58b",
+        "type": "http response",
+        "z": "508f8d5d8e511b61",
+        "statusCode": "",
+        "x": 1210,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "c1bc72a3eb5a903a",
+        "type": "debug",
+        "z": "508f8d5d8e511b61",
+        "name": "debug 14",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1700,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "ed302d3787f946d8",
+        "type": "debug",
+        "z": "508f8d5d8e511b61",
+        "name": "debug 15",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "321bbf17d6cd1d02",
+        "type": "inject",
+        "z": "daf57f3632673757",
+        "name": "Read all signals (2s polling)",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 1,
+        "topic": "readmultiple",
+        "payload": "",
+        "payloadType": "str",
+        "x": 320,
+        "y": 120,
+        "wires": [
+            [
+                "0277d5690f69647c"
+            ]
+        ]
+    },
+    {
+        "id": "e627dd07ab2f8d2f",
+        "type": "OpcUa-Item",
+        "z": "daf57f3632673757",
+        "item": "ns=6;s=::AsGlobalPV:MESPAOEE_udiRunningTime",
+        "datatype": "UInt32",
+        "name": "RunningTime",
+        "x": 340,
+        "y": 180,
+        "wires": [
+            [
+                "0277d5690f69647c"
+            ]
+        ]
+    },
+    {
+        "id": "8868fa53eb2968cc",
+        "type": "OpcUa-Item",
+        "z": "daf57f3632673757",
+        "item": "ns=6;s=::AsGlobalPV:MESPAOEE_bAlarm",
+        "datatype": "Boolean",
+        "name": "AlarmBit",
+        "x": 320,
+        "y": 240,
+        "wires": [
+            [
+                "0277d5690f69647c"
+            ]
+        ]
+    },
+    {
+        "id": "5236ba9c56e8017a",
+        "type": "OpcUa-Item",
+        "z": "daf57f3632673757",
+        "item": "ns=6;s=::AsGlobalPV:MESPAEA_rCurrent",
+        "datatype": "Float",
+        "name": "Current",
+        "x": 320,
+        "y": 300,
+        "wires": [
+            [
+                "0277d5690f69647c"
+            ]
+        ]
+    },
+    {
+        "id": "0277d5690f69647c",
+        "type": "OpcUa-Client",
+        "z": "daf57f3632673757",
+        "endpoint": "be698b4ab16547bf",
+        "action": "readmultiple",
+        "deadbandtype": "a",
+        "deadbandvalue": 0,
+        "time": 1,
+        "timeUnit": "s",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "name": "OPC UA Client",
+        "x": 630,
+        "y": 220,
+        "wires": [
+            [
+                "6eb29ea296d23d48",
+                "a764587f857035c0"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "6eb29ea296d23d48",
+        "type": "debug",
+        "z": "daf57f3632673757",
+        "name": "RAW OPCUA MSG",
+        "active": true,
+        "tosidebar": true,
+        "complete": "true",
+        "targetType": "full",
+        "x": 910,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "a764587f857035c0",
+        "type": "function",
+        "z": "daf57f3632673757",
+        "name": "Build SIF402 JSON",
+        "func": "// Extract actual OPC UA browseName\nlet browseName = msg.topic?.browseName;\nlet value = msg.payload;\n\n// Load last stored state\nlet state = flow.get(\"402_state\") || {\n    station: {\n        id: \"SIF-402\",\n        status: \"Unknown\",\n        recipe: \"StandardMix_v2.3\",\n        timestamp: \"\",\n        runningTime: 0,\n        current: 0,\n        hopper1: {\n            present: true,\n            minPellets: true\n        },\n        hopper2: {\n            present: true,\n            minPellets: true\n        },\n        hopper3: {\n            present: true,\n            minPellets: true\n        }\n    },\n    alarms: []\n};\n\n// DEBUG print browseName\nnode.warn(\"Received browseName: \" + browseName);\n\n// Process based on REAL browseName values\nswitch (browseName) {\n\n    case \"RunningTime\":\n        state.station.runningTime = value;\n        break;\n\n    case \"AlarmBit\":\n        if (value === true) {\n            state.station.status = \"Alarm\";\n            state.alarms = [\n                {\n                    id: \"station_alarm\",\n                    severity: \"warning\",\n                    message: \"Station is in Alarm !\",\n                    timestamp: new Date().toISOString()\n                }\n            ];\n        } else {\n            state.station.status = \"Running\";\n            state.alarms = [\n                {\n                    id: \"station_alarm\",\n                    severity: \"info\",\n                    message: \"Station has none alarms\",\n                    timestamp: new Date().toISOString()\n                }\n            ];\n        }\n        break;\n\n    case \"Current\":\n        state.station.current = value;\n        break;\n    \n    case \"Hopper1_present\":\n        state.station.hopper1.present = value;\n        break;\n\n    case \"Hopper1_Min_pellets\":\n        state.station.hopper1.minPellets = value;\n        break;\n    \n    case \"Hopper2_present\":\n        state.station.hopper2.present = value;\n        break;\n\n    case \"Hopper2_Min_pellets\":\n        state.station.hopper2.minPellets = value;\n        break;\n\n    case \"Hopper3_present\":\n        state.station.hopper3.present = value;\n        break;\n\n    case \"Hopper3_Min_pellets\":\n        state.station.hopper3.minPellets = value;\n        break;\n}\n\n// Update timestamp\nstate.station.timestamp = new Date().toISOString();\n\n// Save back into flow context\nflow.set(\"402_state\", state);\n\n// Output for debugging\nmsg.payload = state;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 260,
+        "wires": [
+            [
+                "ef62bfcc593ac83c"
+            ]
+        ]
+    },
+    {
+        "id": "ef62bfcc593ac83c",
+        "type": "debug",
+        "z": "daf57f3632673757",
+        "name": "FINAL JSON",
+        "active": false,
+        "tosidebar": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1150,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "dd34149388da3741",
+        "type": "http in",
+        "z": "daf57f3632673757",
+        "name": "GET /mes/402_latest",
+        "url": "/mes/402_latest",
+        "method": "get",
+        "upload": false,
+        "x": 670,
+        "y": 420,
+        "wires": [
+            [
+                "7644bb4be16c5a7d"
+            ]
+        ]
+    },
+    {
+        "id": "7644bb4be16c5a7d",
+        "type": "function",
+        "z": "daf57f3632673757",
+        "name": "Return latest JSON",
+        "func": "const data = flow.get(\"402_state\");\n\nif (!data) {\n    msg.payload = { error: \"No data available yet\" };\n    msg.statusCode = 503;\n    return msg;\n}\n\nmsg.payload = data;\nmsg.headers = { \"Content-Type\": \"application/json\" };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 920,
+        "y": 420,
+        "wires": [
+            [
+                "0aac303c6dc5c5cb"
+            ]
+        ]
+    },
+    {
+        "id": "0aac303c6dc5c5cb",
+        "type": "http response",
+        "z": "daf57f3632673757",
+        "name": "HTTP Response",
+        "statusCode": "",
+        "x": 1180,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "4e6c9f620c185407",
+        "type": "inject",
+        "z": "daf57f3632673757",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 180,
+        "wires": [
+            [
+                "e627dd07ab2f8d2f"
+            ]
+        ]
+    },
+    {
+        "id": "7c082f3d5c894367",
+        "type": "inject",
+        "z": "daf57f3632673757",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 240,
+        "wires": [
+            [
+                "8868fa53eb2968cc"
+            ]
+        ]
+    },
+    {
+        "id": "14db8a64c0f2ae30",
+        "type": "inject",
+        "z": "daf57f3632673757",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 300,
+        "wires": [
+            [
+                "5236ba9c56e8017a"
+            ]
+        ]
+    },
+    {
+        "id": "d051bdc0e69b6ae9",
+        "type": "debug",
+        "z": "daf57f3632673757",
+        "name": "debug 16",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1200,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "35e652a62eba1057",
+        "type": "OpcUa-Item",
+        "z": "daf57f3632673757",
+        "item": "ns=6;s=::AsGlobalPV:MESINV_SIF402_bDp1",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "Hopper1_present",
+        "x": 350,
+        "y": 360,
+        "wires": [
+            [
+                "0277d5690f69647c"
+            ]
+        ]
+    },
+    {
+        "id": "85ab6a090f617f4c",
+        "type": "OpcUa-Item",
+        "z": "daf57f3632673757",
+        "item": "ns=6;s=::AsGlobalPV:MESINV_SIF402_bMin1",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "Hopper1_Min_pellets",
+        "x": 360,
+        "y": 420,
+        "wires": [
+            [
+                "0277d5690f69647c"
+            ]
+        ]
+    },
+    {
+        "id": "3d498c709f6b2d7d",
+        "type": "inject",
+        "z": "daf57f3632673757",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 360,
+        "wires": [
+            [
+                "35e652a62eba1057"
+            ]
+        ]
+    },
+    {
+        "id": "bed155566745eebc",
+        "type": "inject",
+        "z": "daf57f3632673757",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 420,
+        "wires": [
+            [
+                "85ab6a090f617f4c"
+            ]
+        ]
+    },
+    {
+        "id": "7e48200d6c0feca0",
+        "type": "OpcUa-Item",
+        "z": "daf57f3632673757",
+        "item": "ns=6;s=::AsGlobalPV:MESINV_SIF402_bDp2",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "Hopper2_present",
+        "x": 350,
+        "y": 480,
+        "wires": [
+            [
+                "0277d5690f69647c"
+            ]
+        ]
+    },
+    {
+        "id": "289126fdd4026c57",
+        "type": "OpcUa-Item",
+        "z": "daf57f3632673757",
+        "item": "ns=6;s=::AsGlobalPV:MESINV_SIF402_bMin2",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "Hopper2_Min_pellets",
+        "x": 360,
+        "y": 540,
+        "wires": [
+            [
+                "0277d5690f69647c"
+            ]
+        ]
+    },
+    {
+        "id": "757078944492c39b",
+        "type": "inject",
+        "z": "daf57f3632673757",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 480,
+        "wires": [
+            [
+                "7e48200d6c0feca0"
+            ]
+        ]
+    },
+    {
+        "id": "71fbeda5cde8a298",
+        "type": "inject",
+        "z": "daf57f3632673757",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 540,
+        "wires": [
+            [
+                "289126fdd4026c57"
+            ]
+        ]
+    },
+    {
+        "id": "f2aedcb9756e41b2",
+        "type": "OpcUa-Item",
+        "z": "daf57f3632673757",
+        "item": "ns=6;s=::AsGlobalPV:MESINV_SIF402_bDp3",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "Hopper3_present",
+        "x": 350,
+        "y": 600,
+        "wires": [
+            [
+                "0277d5690f69647c"
+            ]
+        ]
+    },
+    {
+        "id": "0ea654c06f348d12",
+        "type": "OpcUa-Item",
+        "z": "daf57f3632673757",
+        "item": "ns=6;s=::AsGlobalPV:MESINV_SIF402_bMin3",
+        "datatype": "Boolean",
+        "value": "",
+        "name": "Hopper3_Min_pellets",
+        "x": 360,
+        "y": 660,
+        "wires": [
+            [
+                "0277d5690f69647c"
+            ]
+        ]
+    },
+    {
+        "id": "e8ecc7f6defa5cb4",
+        "type": "inject",
+        "z": "daf57f3632673757",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 600,
+        "wires": [
+            [
+                "f2aedcb9756e41b2"
+            ]
+        ]
+    },
+    {
+        "id": "9c731387410afa4e",
+        "type": "inject",
+        "z": "daf57f3632673757",
+        "name": "Read",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 660,
+        "wires": [
+            [
+                "0ea654c06f348d12"
+            ]
+        ]
+    }
+]

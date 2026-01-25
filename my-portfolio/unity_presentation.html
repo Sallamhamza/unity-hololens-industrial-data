@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unity Development - SIF-402 HoloLens AR</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #0a0e27;
+            color: white;
+            overflow: hidden;
+        }
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f35 100%);
+            padding: 4rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: fadeIn 0.5s;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 1.2rem;
+            color: #3498db;
+            font-weight: 600;
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #3498db;
+        }
+
+        h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #5dade2;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: #85c1e9;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            list-style: none;
+            margin-left: 2rem;
+        }
+
+        li {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-size: 2rem;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .box {
+            background: rgba(52, 152, 219, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid rgba(52, 152, 219, 0.3);
+        }
+
+        .highlight {
+            color: #3498db;
+            font-weight: 600;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-box {
+            background: rgba(26, 35, 126, 0.5);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid rgba(52, 152, 219, 0.4);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: #3498db;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #bdc3c7;
+        }
+
+        .architecture-flow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .layer-box {
+            background: rgba(26, 35, 126, 0.5);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 2px solid rgba(52, 152, 219, 0.4);
+            flex: 1;
+            margin: 0 0.5rem;
+            text-align: center;
+        }
+
+        .arrow {
+            color: #3498db;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .problem-box {
+            background: rgba(230, 126, 34, 0.15);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid #e67e22;
+            margin-bottom: 1.5rem;
+        }
+
+        .solution-box {
+            background: rgba(39, 174, 96, 0.15);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid #27ae60;
+        }
+
+        .nav-buttons {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        button {
+            background: rgba(52, 152, 219, 0.3);
+            border: 2px solid #3498db;
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background: rgba(52, 152, 219, 0.6);
+            transform: translateY(-2px);
+        }
+
+        button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .progress-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 5px;
+            background: #3498db;
+            transition: width 0.3s;
+        }
+
+        .tech-badge {
+            display: inline-block;
+            background: rgba(52, 152, 219, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin: 0.5rem;
+            border: 1px solid rgba(52, 152, 219, 0.5);
+            font-size: 1.1rem;
+        }
+
+        .code-snippet {
+            background: #1e1e1e;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(52, 152, 219, 0.3);
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            color: #d4d4d4;
+            margin-top: 1rem;
+            overflow-x: auto;
+        }
+
+        .emphasis {
+            font-size: 1.8rem;
+            color: #3498db;
+            font-weight: bold;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .timer {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            font-size: 1.5rem;
+            color: #3498db;
+            font-weight: 600;
+            background: rgba(26, 35, 126, 0.5);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            border: 2px solid rgba(52, 152, 219, 0.4);
+        }
+
+        .section-title {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            font-size: 1rem;
+            color: #85c1e9;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="timer" id="timer">0:00</div>
+
+    <div class="presentation">
+        <!-- Slide 1: Unity Overview -->
+        <div class="slide active">
+            <div class="section-title">Unity Development</div>
+            <div class="slide-number">1/10</div>
+            <h2>Unity Development Overview</h2>
+            <p class="subtitle">Complete Application Development for HoloLens 2</p>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span class="stat-number">570+</span>
+                    <span class="stat-label">Lines of C# Code</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">7</span>
+                    <span class="stat-label">Modular Scripts</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">60</span>
+                    <span class="stat-label">FPS Stable</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">&lt;100ms</span>
+                    <span class="stat-label">API Latency</span>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h3>Technology Stack</h3>
+                <div style="margin-top: 1rem;">
+                    <span class="tech-badge">Unity 2022.3 LTS</span>
+                    <span class="tech-badge">C#</span>
+                    <span class="tech-badge">MRTK 2.8.3</span>
+                    <span class="tech-badge">OpenXR</span>
+                    <span class="tech-badge">JsonUtility</span>
+                    <span class="tech-badge">Coroutines</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Unity Architecture -->
+        <div class="slide">
+            <div class="section-title">Unity Development</div>
+            <div class="slide-number">2/10</div>
+            <h2>Unity Layer in System Architecture</h2>
+            
+            <div class="architecture-flow">
+                <div class="layer-box">
+                    <h3>PLC</h3>
+                    <p style="font-size: 1rem; margin-top: 0.5rem;">Industrial Data</p>
+                </div>
+                <div class="arrow">→</div>
+                <div class="layer-box">
+                    <h3>Node-RED</h3>
+                    <p style="font-size: 1rem; margin-top: 0.5rem;">REST API</p>
+                </div>
+                <div class="arrow">→</div>
+                <div class="layer-box" style="background: rgba(52, 152, 219, 0.3); border: 3px solid #3498db;">
+                    <h3>Unity Application</h3>
+                    <p style="font-size: 1rem; margin-top: 0.5rem;"><strong>Our Focus</strong></p>
+                </div>
+                <div class="arrow">→</div>
+                <div class="layer-box">
+                    <h3>HoloLens 2</h3>
+                    <p style="font-size: 1rem; margin-top: 0.5rem;">AR Display</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h3>Unity's Role</h3>
+                <ul>
+                    <li>Fetch data from REST APIs every 3 seconds</li>
+                    <li>Parse JSON and update UI in real-time</li>
+                    <li>Handle MRTK interactions (hand tracking)</li>
+                    <li>Deploy to HoloLens 2 as UWP application</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 3: Modular Architecture -->
+        <div class="slide">
+            <div class="section-title">Unity Development</div>
+            <div class="slide-number">3/10</div>
+            <h2>Modular Architecture Design</h2>
+            <h3>Three-Layer Pattern for Flexibility</h3>
+            
+            <div class="two-column">
+                <div>
+                    <div class="box">
+                        <h4 style="color: #3498db; margin-bottom: 1rem;">Challenge</h4>
+                        <p style="font-size: 1.2rem;">Switch between mock data (development) and live API (production) without code changes</p>
+                    </div>
+                    
+                    <div class="box" style="margin-top: 2rem;">
+                        <h4 style="color: #27ae60; margin-bottom: 1rem;">Result</h4>
+                        <p style="font-size: 1.2rem;">Zero UI code changes needed to go from development to production!</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="box">
+                        <h4 style="color: #5dade2; margin-bottom: 1rem;">Three Layers</h4>
+                        <ul style="font-size: 1.3rem;">
+                            <li><strong>Layer 1:</strong> Data Structures<br><span style="font-size: 1rem; color: #85c1e9;">DataClasses.cs - Shared models</span></li>
+                            <li><strong>Layer 2:</strong> Data Providers<br><span style="font-size: 1rem; color: #85c1e9;">MockDataManager / ApiDataManager</span></li>
+                            <li><strong>Layer 3:</strong> Presentation<br><span style="font-size: 1rem; color: #85c1e9;">StationInfoDisplay - Event-driven UI</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: API Integration -->
+        <div class="slide">
+            <div class="section-title">Unity Development</div>
+            <div class="slide-number">4/10</div>
+            <h2>Real-Time API Integration</h2>
+            <h3>Fetching Live Industrial Data</h3>
+            
+            <ul>
+                <li><span class="highlight">UnityWebRequest</span> - Modern HTTP client for Unity</li>
+                <li><span class="highlight">Coroutines</span> - Non-blocking async calls (no UI freeze)</li>
+                <li><span class="highlight">3-second polling</span> - Real-time updates without overwhelming PLC</li>
+                <li><span class="highlight">Type-safe JSON parsing</span> - Using JsonUtility</li>
+            </ul>
+
+            <div class="code-snippet">
+IEnumerator FetchHopperData(string endpoint) {
+    string url = baseUrl + endpoint;
+    
+    using (UnityWebRequest request = UnityWebRequest.Get(url)) {
+        request.timeout = 5; // 5 second timeout
+        yield return request.SendWebRequest();
+        
+        if (request.result == UnityWebRequest.Result.Success) {
+            HopperResponse response = 
+                JsonUtility.FromJson&lt;HopperResponse&gt;(request.downloadHandler.text);
+            
+            // Update UI through event system
+            OnDataUpdated?.Invoke(response);
+        } else {
+            OnConnectionError?.Invoke("Failed to connect");
+        }
+    }
+}
+            </div>
+        </div>
+
+        <!-- Slide 5: MRTK Integration -->
+        <div class="slide">
+            <div class="section-title">Unity Development</div>
+            <div class="slide-number">5/10</div>
+            <h2>MRTK Interaction System</h2>
+            <h3>Enabling Hand Tracking on HoloLens</h3>
+            
+            <div class="two-column">
+                <div>
+                    <div class="box">
+                        <h4 style="color: #3498db; margin-bottom: 1rem;">The Challenge</h4>
+                        <p style="font-size: 1.2rem;">Standard Unity UI buttons don't work with HoloLens hand tracking. Need special MRTK components.</p>
+                    </div>
+                    
+                    <div class="box" style="margin-top: 2rem;">
+                        <h4 style="color: #27ae60; margin-bottom: 1rem;">4-Component Stack</h4>
+                        <ul style="font-size: 1.2rem;">
+                            <li><strong>Interactable</strong> - Events</li>
+                            <li><strong>PressableButton</strong> - Press detection</li>
+                            <li><strong>NearInteractionTouchable</strong> - Hand proximity</li>
+                            <li><strong>Box Collider</strong> - Physics</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div class="box">
+                        <h4 style="color: #5dade2; margin-bottom: 1rem;">Features Implemented</h4>
+                        <ul style="font-size: 1.3rem;">
+                            <li>Hand tracking (26 joints/hand)</li>
+                            <li>Near interaction (poke)</li>
+                            <li>Far interaction (ray casting)</li>
+                            <li>Visual feedback (hover/press)</li>
+                            <li>&lt;50ms response latency</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <p class="emphasis">Natural interaction with zero learning curve!</p>
+        </div>
+
+        <!-- Slide 6: HoloLens Deployment -->
+        <div class="slide">
+            <div class="section-title">Unity Development</div>
+            <div class="slide-number">6/10</div>
+            <h2>HoloLens Deployment Pipeline</h2>
+            <h3>Mastering UWP Build Configuration</h3>
+            
+            <div class="two-column">
+                <div>
+                    <div class="box">
+                        <h4 style="color: #3498db; margin-bottom: 1rem;">Critical Settings</h4>
+                        <ul style="font-size: 1.2rem;">
+                            <li><strong>Build Type:</strong> D3D Project (NOT XAML!)</li>
+                            <li><strong>Architecture:</strong> ARM64</li>
+                            <li><strong>Backend:</strong> IL2CPP</li>
+                            <li><strong>Target SDK:</strong> 10.0.22621.0</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div class="box">
+                        <h4 style="color: #5dade2; margin-bottom: 1rem;">OpenXR Configuration</h4>
+                        <ul style="font-size: 1.2rem;">
+                            <li>Microsoft HoloLens feature group</li>
+                            <li>Hand Tracking subsystem</li>
+                            <li>Microsoft Hand Interaction Profile</li>
+                            <li>Initialize XR on Startup</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem;">
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <span class="stat-number">5/5</span>
+                        <span class="stat-label">Successful Deployments</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">60 FPS</span>
+                        <span class="stat-label">Stable Performance</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">0</span>
+                        <span class="stat-label">Runtime Crashes</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">250MB</span>
+                        <span class="stat-label">Memory Footprint</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Problem #1 -->
+        <div class="slide">
+            <div class="section-title">Unity Development</div>
+            <div class="slide-number">7/10</div>
+            <h2>Technical Challenge #1</h2>
+            <h3>The 2D Window Mystery</h3>
+            
+            <div class="problem-box">
+                <h4 style="color: #e67e22; margin-bottom: 1rem; font-size: 1.5rem;">❌ Problem</h4>
+                <p style="font-size: 1.4rem;">Application deployed to HoloLens appeared as a flat 2D slate window instead of a holographic 3D interface with spatial positioning</p>
+            </div>
+
+            <div class="solution-box">
+                <h4 style="color: #27ae60; margin-bottom: 1rem; font-size: 1.5rem;">✓ Solution</h4>
+                <p style="font-size: 1.3rem; margin-bottom: 1rem;"><strong>Root Cause:</strong> Build Type was set to "XAML" instead of "D3D Project"</p>
+                <p style="font-size: 1.3rem; margin-bottom: 1rem;"><strong>Fix:</strong> File → Build Settings → Build Type → D3D Project</p>
+                <p style="font-size: 1.3rem;"><strong>Result:</strong> Complete rebuild deployed successfully with full holographic rendering</p>
+            </div>
+
+            <p class="emphasis" style="margin-top: 2rem;">
+                Lesson: Build configuration fundamentally determines rendering mode in UWP!
+            </p>
+        </div>
+
+        <!-- Slide 8: Problem #2 -->
+        <div class="slide">
+            <div class="section-title">Unity Development</div>
+            <div class="slide-number">8/10</div>
+            <h2>Technical Challenge #2</h2>
+            <h3>Network Permissions Mystery</h3>
+            
+            <div class="problem-box">
+                <h4 style="color: #e67e22; margin-bottom: 1rem; font-size: 1.5rem;">❌ Problem</h4>
+                <p style="font-size: 1.4rem;">API connection worked perfectly in Unity Editor but failed on HoloLens device with "Access Denied" errors</p>
+            </div>
+
+            <div class="solution-box">
+                <h4 style="color: #27ae60; margin-bottom: 1rem; font-size: 1.5rem;">✓ Multi-Layer Solution</h4>
+                <ul style="font-size: 1.2rem;">
+                    <li><strong>Unity Player Settings:</strong> Enable "Allow downloads over HTTP"</li>
+                    <li><strong>UWP Capabilities:</strong> Enable PrivateNetworkClientServer capability</li>
+                    <li><strong>Windows Firewall:</strong> Create inbound rule for Node-RED port 1880</li>
+                    <li><strong>URL Format:</strong> Correct format http://192.168.1.100:1880 (no trailing slash)</li>
+                </ul>
+            </div>
+
+            <p class="emphasis" style="margin-top: 2rem;">
+                Lesson: UWP sandbox requires explicit permissions at multiple levels!
+            </p>
+        </div>
+
+        <!-- Slide 9: Performance Results -->
+        <div class="slide">
+            <div class="section-title">Unity Development</div>
+            <div class="slide-number">9/10</div>
+            <h2>Performance Results</h2>
+            <h3>Benchmarks Across Development & Deployment</h3>
+            
+            <div class="two-column">
+                <div>
+                    <h3 style="color: #3498db;">Unity Editor Testing</h3>
+                    <div class="box">
+                        <ul style="font-size: 1.3rem;">
+                            <li>Scene load time: <span class="highlight">&lt;2 seconds</span></li>
+                            <li>Button response: <span class="highlight">&lt;50ms</span></li>
+                            <li>JSON parsing: <span class="highlight">&lt;10ms</span></li>
+                            <li>API call overhead: <span class="highlight">80-100ms</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="color: #27ae60;">HoloLens 2 Device</h3>
+                    <div class="box">
+                        <ul style="font-size: 1.3rem;">
+                            <li>Holographic frame rate: <span class="highlight">60 FPS stable</span></li>
+                            <li>Hand tracking latency: <span class="highlight">&lt;20ms</span></li>
+                            <li>World-locked UI stability: <span class="highlight">&lt;2mm drift/5min</span></li>
+                            <li>Memory footprint: <span class="highlight">250MB</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <p class="emphasis" style="margin-top: 3rem;">
+                Production-ready performance across all metrics!
+            </p>
+        </div>
+
+        <!-- Slide 10: Key Learnings -->
+        <div class="slide">
+            <div class="section-title">Unity Development</div>
+            <div class="slide-number">10/10</div>
+            <h2>Key Technical Learnings</h2>
+            
+            <div class="two-column">
+                <div>
+                    <h3>Unity & MRTK</h3>
+                    <div class="box">
+                        <ul style="font-size: 1.2rem;">
+                            <li>World Space Canvas scale: <span class="highlight">0.001</span></li>
+                            <li>MRTK events ≠ Unity UI events</li>
+                            <li>Component references can break on IDE updates</li>
+                            <li>Always test in Editor, verify on device</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <h3>HoloLens Deployment</h3>
+                    <div class="box">
+                        <ul style="font-size: 1.2rem;">
+                            <li>D3D Project build type is mandatory</li>
+                            <li>ARM64 architecture required</li>
+                            <li>Version numbers must always increment</li>
+                            <li>Network capabilities must be explicit</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem;">
+                <p class="emphasis">
+                    From zero HoloLens experience → Full Unity AR developer in 7 weeks!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-buttons">
+        <button id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+        <button id="nextBtn" onclick="changeSlide(1)">Next →</button>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let startTime = Date.now();
+        let timerInterval;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+            
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight' || event.key === ' ') {
+                if (currentSlide < totalSlides - 1) changeSlide(1);
+            } else if (event.key === 'ArrowLeft') {
+                if (currentSlide > 0) changeSlide(-1);
+            }
+        });
+
+        function updateTimer() {
+            const elapsed = Date.now() - startTime;
+            const minutes = Math.floor(elapsed / 60000);
+            const seconds = Math.floor((elapsed % 60000) / 1000);
+            document.getElementById('timer').textContent = 
+                `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (minutes >= 8) {
+                document.getElementById('timer').style.color = '#e74c3c';
+            }
+        }
+
+        timerInterval = setInterval(updateTimer, 1000);
+        showSlide(0);
+    </script>
+</body>
+</html>

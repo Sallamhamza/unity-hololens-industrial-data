@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 294a122fae6a4fe4fac1d83335169e7b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - roundCapPrefab: {fileID: 919132149155446097, guid: 858d3e8928a4fbc4c98eee584ab14c62, type: 3}
+  - squareCapPrefab: {fileID: 919132149155446097, guid: f63715170c66dea45a5fd13359049621, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
