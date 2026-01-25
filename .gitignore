@@ -1,18 +1,16 @@
-# Unity generated
+# Unity
 Library/
 Temp/
 Obj/
 Build/
 Builds/
 UserSettings/
+*.pyd
+*.tgz
 
-# MRTK / Generated
-Assets/MixedRealityToolkit.Generated/
-Assets/Samples/
+# Logs
+Logs/
+unity/XRLineAssistant/Logs/
 
-# Certificates
-*.pfx
-
-# OS
-.DS_Store
-Thumbs.db
+# Node-RED or local virtual environments
+XR_Project/.venv/
