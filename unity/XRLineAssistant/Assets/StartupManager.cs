@@ -1,120 +1,94 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static System.Net.Mime.MediaTypeNames;
+using Debug = UnityEngine.Debug;
 
 public class StartupManager : MonoBehaviour
 {
-    [Header("UI Elements")]
+    [Header("UI References")]
+    public GameObject startupMenu;
+    public GameObject controlPanel402;
+    public GameObject controlPanel405;
+
+    [Header("3D Hopper Objects (Show after START)")]
+    public GameObject blueHopper;
+    public GameObject yellowHopper;
+    public GameObject redHopper;
+
+    [Header("3D Feeder Visualizers (Show after START)")]
+    public GameObject visualizerRound;
+    public GameObject visualizerSquare;
+
+    [Header("Buttons (Unity UI)")]
     public Button startButton;
     public Button settingsButton;
     public Button exitButton;
-    public TextMeshProUGUI titleText;
-    public TextMeshProUGUI subtitleText;
-
-    [Header("Panels")]
-    public GameObject startupPanel;
-    public GameObject mainControlPanel;
-
-    [Header("Data")]
-    public MockDataManager dataManager;
 
     void Start()
     {
-        SetupButtons();
-        ShowStartupScreen();
+        Debug.Log("=== STARTUP MANAGER INITIALIZED ===");
 
-        UnityEngine.Debug.Log("StartupManager initialized");
-    }
+        // Show startup menu
+        if (startupMenu != null) startupMenu.SetActive(true);
 
-    void SetupButtons()
-    {
+        // Hide control panels
+        if (controlPanel402 != null) controlPanel402.SetActive(false);
+        if (controlPanel405 != null) controlPanel405.SetActive(false);
+
+        // Hide 3D hopper objects
+        if (blueHopper != null) blueHopper.SetActive(false);
+        if (yellowHopper != null) yellowHopper.SetActive(false);
+        if (redHopper != null) redHopper.SetActive(false);
+
+        // Hide BOTH feeder visualizers
+        if (visualizerRound != null) visualizerRound.SetActive(false);
+        if (visualizerSquare != null) visualizerSquare.SetActive(false);
+
+        Debug.Log("[OK] 3D objects hidden");
+
+        // Connect buttons
         if (startButton != null)
         {
-            startButton.onClick.AddListener(OnStartClicked);
-            UnityEngine.Debug.Log("Start button listener added");
-        }
-        else
-        {
-            UnityEngine.Debug.LogWarning("Start button not assigned!");
-        }
-
-        if (settingsButton != null)
-        {
-            settingsButton.onClick.AddListener(OnSettingsClicked);
-        }
-        else
-        {
-            UnityEngine.Debug.LogWarning("Settings button not assigned!");
+            startButton.onClick.AddListener(OnStartButtonClicked);
+            Debug.Log("[OK] Start button connected");
         }
 
         if (exitButton != null)
         {
-            exitButton.onClick.AddListener(OnExitClicked);
-        }
-        else
-        {
-            UnityEngine.Debug.LogWarning("Exit button not assigned!");
+            exitButton.onClick.AddListener(OnExitButtonClicked);
+            Debug.Log("[OK] Exit button connected");
         }
     }
 
-    void ShowStartupScreen()
+    void OnStartButtonClicked()
     {
-        if (startupPanel != null)
-        {
-            startupPanel.SetActive(true);
-            UnityEngine.Debug.Log("Startup panel shown");
-        }
+        Debug.Log("[START] Button clicked - Showing panels and 3D objects");
 
-        if (mainControlPanel != null)
-        {
-            mainControlPanel.SetActive(false);
-        }
+        // Hide startup menu
+        if (startupMenu != null) startupMenu.SetActive(false);
+
+        // Show control panels
+        if (controlPanel402 != null) controlPanel402.SetActive(true);
+        if (controlPanel405 != null) controlPanel405.SetActive(true);
+
+        // Show hopper 3D objects
+        if (blueHopper != null) blueHopper.SetActive(true);
+        if (yellowHopper != null) yellowHopper.SetActive(true);
+        if (redHopper != null) redHopper.SetActive(true);
+
+        // Show BOTH feeder visualizers
+        if (visualizerRound != null) visualizerRound.SetActive(true);
+        if (visualizerSquare != null) visualizerSquare.SetActive(true);
+
+        Debug.Log("[SUCCESS] All panels and 3D objects shown!");
     }
 
-    void OnStartClicked()
+    void OnExitButtonClicked()
     {
-        UnityEngine.Debug.Log("Start button clicked!");
-
-        if (startupPanel != null)
-        {
-            startupPanel.SetActive(false);
-        }
-
-        if (mainControlPanel != null)
-        {
-            mainControlPanel.SetActive(true);
-            UnityEngine.Debug.Log("Main control panel activated");
-        }
-        else
-        {
-            UnityEngine.Debug.LogWarning("Main control panel not assigned yet!");
-
-            if (subtitleText != null)
-            {
-                subtitleText.text = "Loading main control...";
-            }
-        }
-    }
-
-    void OnSettingsClicked()
-    {
-        UnityEngine.Debug.Log("Settings clicked!");
-
-        if (subtitleText != null)
-        {
-            subtitleText.text = "Settings coming soon...";
-        }
-    }
-
-    void OnExitClicked()
-    {
-        UnityEngine.Debug.Log("Exit clicked!");
-
+        Debug.Log("[EXIT] Button clicked - Quitting application");
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
+        UnityEditor.EditorApplication.isPlaying = false;
 #else
-        Application.Quit();
+        UnityEngine.Application.Quit();
 #endif
     }
 }

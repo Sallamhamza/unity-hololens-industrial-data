@@ -1,117 +1,60 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Debug = UnityEngine.Debug;
 
 public class MainControlUI : MonoBehaviour
 {
-    [Header("UI Elements")]
-    public TextMeshProUGUI statusText;
-    public TextMeshProUGUI recipeText;
+    [Header("Panel References")]
+    public GameObject startupMenu;
+    public GameObject controlPanel402;  // Hoppers
+    public GameObject controlPanel405;  // Feeders
+
+    [Header("Back Button (Unity UI)")]
     public Button backButton;
 
-    [Header("Navigation")]
-    public GameObject mainPanel;
-    public GameObject startupPanel;
-
-    [Header("Data")]
-    public MockDataManager dataManager;
-
-    [Header("Settings")]
-    public float updateInterval = 2f;
+    [Header("Status Display")]
+    public TextMeshProUGUI statusText;
 
     void Start()
     {
+        Debug.Log("=== MAIN CONTROL UI INITIALIZED ===");
+
+        // Connect back button
         if (backButton != null)
         {
-            backButton.onClick.AddListener(OnBackClicked);
-            UnityEngine.Debug.Log("Back button listener added");
+            backButton.onClick.AddListener(OnBackButtonClicked);
+            Debug.Log("[OK] Back button connected");
         }
         else
         {
-            UnityEngine.Debug.LogWarning("Back button not assigned!");
-        }
-
-        InvokeRepeating("UpdateDisplay", 0f, updateInterval);
-
-        UnityEngine.Debug.Log("MainControlUI initialized");
-    }
-
-    void UpdateDisplay()
-    {
-        if (dataManager == null)
-        {
-            UnityEngine.Debug.LogWarning("DataManager not assigned to MainControlUI!");
-
-            if (statusText != null)
-            {
-                statusText.text = "Status: No Data Manager";
-                statusText.color = Color.red;
-            }
-
-            if (recipeText != null)
-            {
-                recipeText.text = "Recipe: ERROR";
-            }
-
-            return;
-        }
-
-        StationData data = dataManager.GetStationData();
-
-        if (data != null)
-        {
-            if (statusText != null)
-            {
-                statusText.text = "Status: " + data.status;
-
-                // Change color based on status
-                string statusLower = data.status.ToLower();
-
-                if (statusLower.Contains("ready"))
-                {
-                    statusText.color = Color.green;
-                }
-                else if (statusLower.Contains("running"))
-                {
-                    statusText.color = Color.cyan;
-                }
-                else if (statusLower.Contains("error") || statusLower.Contains("refill") || statusLower.Contains("missing"))
-                {
-                    statusText.color = Color.yellow;
-                }
-                else if (statusLower.Contains("emergency"))
-                {
-                    statusText.color = Color.red;
-                }
-                else
-                {
-                    statusText.color = Color.white;
-                }
-            }
-
-            if (recipeText != null)
-            {
-                recipeText.text = "Recipe: " + data.recipe;
-            }
-        }
-        else
-        {
-            UnityEngine.Debug.LogWarning("Station data is null!");
+            Debug.LogError("[ERROR] Back button reference is NULL!");
         }
     }
 
-    void OnBackClicked()
+    public void OnBackButtonClicked()
     {
-        UnityEngine.Debug.Log("Back button clicked!");
+        Debug.Log("[BACK] Button clicked - Returning to Startup Menu");
 
-        if (mainPanel != null)
-        {
-            mainPanel.SetActive(false);
-        }
+        // Hide both control panels
+        if (controlPanel402 != null)
+            controlPanel402.SetActive(false);
 
-        if (startupPanel != null)
+        if (controlPanel405 != null)
+            controlPanel405.SetActive(false);
+
+        // Show startup menu
+        if (startupMenu != null)
+            startupMenu.SetActive(true);
+
+        Debug.Log("[SUCCESS] Returned to Startup Menu!");
+    }
+
+    public void UpdateStatus(string message)
+    {
+        if (statusText != null)
         {
-            startupPanel.SetActive(true);
+            statusText.text = message;
         }
     }
 }
