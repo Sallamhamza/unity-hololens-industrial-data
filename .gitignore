@@ -18,3 +18,15 @@ XR_Project/.venv/
 *.pyd
 *.tgz
 XR_Project/.venv/
+# Ignore all large files and generated files
+*.mp4
+*.pyd
+*.tgz
+XR_Project/.venv/
+Library/
+Temp/
+Obj/
+Build/
+Builds/
+Logs/
+unity/XRLineAssistant/Logs/
